@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  email_domain: 
+  bridge: 
+  bridge_global: 
+  email_frequency: 1
+  month: 1
+  year: 1
+  cluster_id: 
+
+two:
+  email_domain: 
+  bridge: 
+  bridge_global: 
+  email_frequency: 1
+  month: 1
+  year: 1
+  cluster_id: 

@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email domain:</strong>
+  <%= @email.email_domain %>
+</p>
+
+<p>
+  <strong>Bridge:</strong>
+  <%= @email.bridge %>
+</p>
+
+<p>
+  <strong>Bridge global:</strong>
+  <%= @email.bridge_global %>
+</p>
+
+<p>
+  <strong>Email frequency:</strong>
+  <%= @email.email_frequency %>
+</p>
+
+<p>
+  <strong>Month:</strong>
+  <%= @email.month %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @email.year %>
+</p>
+
+<p>
+  <strong>Cluster:</strong>
+  <%= @email.cluster %>
+</p>
+
+<%= link_to 'Edit', edit_email_path(@email) %> |
+<%= link_to 'Back', emails_path %>

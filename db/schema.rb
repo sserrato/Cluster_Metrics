@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104022909) do
+ActiveRecord::Schema.define(version: 20151104023638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,4 +30,19 @@ ActiveRecord::Schema.define(version: 20151104022909) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "emails", force: :cascade do |t|
+    t.string   "email_domain"
+    t.integer  "bridge"
+    t.integer  "bridge_global"
+    t.integer  "email_frequency"
+    t.integer  "month"
+    t.integer  "year"
+    t.integer  "cluster_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "emails", ["cluster_id"], name: "index_emails_on_cluster_id", using: :btree
+
+  add_foreign_key "emails", "clusters"
 end
