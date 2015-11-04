@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
-  resources :emails
+  resources :emails, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :clusters
-  root 'clusters#index'
+  post 'emails/import'
+  get 'emails/upload'
+  get 'emails/classify'
+  patch 'emails/classify'
+  root 'emails#index'
+
+  #route for import from CSV.
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
