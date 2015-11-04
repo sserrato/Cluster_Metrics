@@ -27,10 +27,10 @@
   <div class="field">
     <%= f.label "cluster" %>: <%=@email.cluster.cluster_name%> <br>
   </div>
-  <div class='btn-group' data-toggle='buttons'>
+  <div class='btn-group btn-lg' data-toggle='buttons'>
     <% Email::BRIDGEVALUE.each do |bv| %>
       <label class='btn btn-primary'>
-          <%= f.radio_button(:bridge, bv.to_s)%><%= Email::BRIDGENAMES[bv]%>
+          <%= f.radio_button(:bridge, bv.to_s, class:'btn-lg')%><%= Email::BRIDGENAMES[bv]%>
       </label>
     <% end %>
 </div>

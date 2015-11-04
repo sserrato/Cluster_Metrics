@@ -1,5 +1,5 @@
 <%# navigation styled for Bootstrap 3.0 %>
-<nav class="navbar navbar-fixed-top">
+<nav class="navbar navbar-static-top">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
@@ -18,8 +18,9 @@
                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data <span class="caret"></span></a>
                <ul class="dropdown-menu">
                  <li><%= link_to 'Create Email Record', new_email_path %></li>
-                 <li><a href="#">Load Email Records</a></li>
-                 <li><a href="#">Classify Email Domains</a></li>
+                 <li><%= link_to "Upload emails",  emails_upload_path %> </li>
+                 <li><%= link_to "Classify email domain bridge",  emails_upload_path %> </li>
+                 
                </ul>
              </li>
 
