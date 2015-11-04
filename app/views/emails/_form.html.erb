@@ -31,7 +31,7 @@
     <% Email::BRIDGEVALUE.each do |bv| %>
       <label class='btn btn-primary'>
           <%= f.radio_button(:bridge, bv.to_s)%><%= Email::BRIDGENAMES[bv]%>
-      </label> 
+      </label>
     <% end %>
 </div>
   <div class="actions">
