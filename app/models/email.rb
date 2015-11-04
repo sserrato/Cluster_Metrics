@@ -1668,7 +1668,7 @@ DOMAINHASH =  {"126.com"=>9999,
 "foretagstv.com"=>9999,
 "hp.com"=>9999,
 "innosport.nl"=>6,
-"itsdalarna.se"=>,
+"itsdalarna.se"=>0,
 "kuntin.com"=>6,
 "lfl.se"=>9999,
 "lists.ce.org"=>9999,
@@ -2157,7 +2157,7 @@ DOMAINHASH =  {"126.com"=>9999,
 "market-ro.eu"=>9999,
 "max.se"=>9999,
 "mcgloballoyaltyclub.com"=>6,
-"mejlcenter.eu"=>,
+"mejlcenter.eu"=>0,
 "miljorapporten.se"=>2,
 "mindfulbusiness.nu"=>2,
 "mitt-barn.se"=>2,
@@ -2224,7 +2224,6 @@ DOMAINHASH =  {"126.com"=>9999,
 "sundaramappliedtechnologies.com"=>6,
 "supportia.se"=>9999,
 "svartpist.com"=>2,
-"svbrf.com"=>,
 "svepost.se"=>9999,
 "swecogroup.com"=>2,
 "swedenict.com"=>5,
@@ -2254,6 +2253,7 @@ DOMAINHASH =  {"126.com"=>9999,
 "whu.edu.cn"=>6,
 "wish.com"=>6,
 "yugongyishan.com"=>6}
+
 def self.to_csv(options ={})
   CSV.generate(options) do |csv|
       csv << column_names
@@ -2263,6 +2263,7 @@ def self.to_csv(options ={})
   end
 end
 
+#import CSV and set value
 def self.import(file)
   CSV.foreach(file.path, headers: true) do |row|
     row.to_hash

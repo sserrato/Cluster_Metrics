@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   resources :emails, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :clusters
   post 'emails/import'
