@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
   resources :users
+  resources :sessions, only: [:new, :create, :destroy]
   resources :emails, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :clusters
   post 'emails/import'
