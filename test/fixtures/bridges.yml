@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bridge: MyString
+  bridge_category: 1
+  bridge_global: 1
+
+two:
+  bridge: MyString
+  bridge_category: 1
+  bridge_global: 1
