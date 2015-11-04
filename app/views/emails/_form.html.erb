@@ -12,9 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :email_domain %><br>
-    <%= f.text_field :email_domain %>
+    <%= f.label :email_domain %>:<%= @email.email_domain %><br>
   </div>
+
+  <div class="field">
+    <%= f.label "This domain was contacted" %>:<%= @email.email_frequency.to_s + " times"%><br>
+  </div>
+  <div class="field">
+    <%= f.label "time period" %>:<%= @email.month.to_s %> / <%=@email.year%><br>
+  </div>
+
+  <div class="field">
+    <%= f.label "cluster" %>: <%=@email.cluster.cluster_name%> <br>
+  </div>
+
   <div class="field">
     <%= f.label :bridge %><br>
     <%= f.text_field :bridge %>
@@ -22,22 +33,6 @@
   <div class="field">
     <%= f.label :bridge_global %><br>
     <%= f.text_field :bridge_global %>
-  </div>
-  <div class="field">
-    <%= f.label :email_frequency %><br>
-    <%= f.number_field :email_frequency %>
-  </div>
-  <div class="field">
-    <%= f.label :month %><br>
-    <%= f.number_field :month %>
-  </div>
-  <div class="field">
-    <%= f.label :year %><br>
-    <%= f.number_field :year %>
-  </div>
-  <div class="field">
-    <%= f.label :cluster_id %><br>
-    <%= f.text_field :cluster_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

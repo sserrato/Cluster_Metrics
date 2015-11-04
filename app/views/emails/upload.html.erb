@@ -1,6 +1,5 @@
-<h1>upload</h1>
 <div class="container">
-  <h1>Load email data from CSV</h1>
+  <h1>Load email records from CSV</h1>
   <p>
     <%= form_tag emails_import_path, multipart: true do %>
     <%= file_field_tag :file%><%= submit_tag "Load email data" %>
