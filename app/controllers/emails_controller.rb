@@ -64,8 +64,15 @@ class EmailsController < ApplicationController
     @email = Email.find(params[:id])
     respond_to do |format|
       if @email.update(email_params)
-        format.html { redirect_to ('/'), notice: 'Email was successfully updated.' }
+        @redirect_next_edit = Email.where("bridge = '0'").first
+        #logic to ensure that when all email_domains are classified, user is told that all is done.
+        if @redirect_next_edit == nil
+          format.html { redirect_to ("/"), notice: 'All emails have been classified.' }
+          format.json { render :show, status: :ok, location: ('/') }
+        else
+        format.html { redirect_to edit_email_path(@redirect_next_edit), notice: 'Email was successfully updated.' }
         format.json { render :show, status: :ok, location: ('/') }
+        end
       else
         format.html { render :edit }
         format.json { render json: @email.errors, status: :unprocessable_entity }

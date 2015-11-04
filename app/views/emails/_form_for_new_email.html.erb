@@ -1,0 +1,47 @@
+<%= form_for(@email) do |f| %>
+  <% if @email.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@email.errors.count, "error") %> prohibited this email from being saved:</h2>
+
+      <ul>
+      <% @email.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email_domain %>
+    <%= f.text_field :email_domain %>
+  </div>
+  <div class="field">
+    <%= f.label :email_frequency %>
+    <%= f.text_field :email_frequency %>
+  </div>
+  <div class="field">
+    <%= f.label :month %>
+    <%= f.number_field :month %>
+  </div>
+  <div class="field">
+    <%= f.label :year %>
+    <%= f.number_field :year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :cluster_id %>
+    <%= f.number_field :cluster_id %>
+  </div>
+
+  <%= f.label "bridge:"%>
+  <div class='btn-group' data-toggle='buttons'>
+    <% Email::BRIDGEVALUE.each do |bv| %>
+      <label class='btn btn-primary'>
+          <%= f.radio_button(:bridge, bv.to_s)%><%= Email::BRIDGENAMES[bv]%>
+      </label>
+    <% end %>
+</div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
