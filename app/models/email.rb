@@ -8,8 +8,8 @@ class Email < ActiveRecord::Base
     DISTICTDOMAINSBRIDGE = Email.select("email_domain, bridge").distinct.order('bridge ASC')
     DISTINCTBRIDGECOUNT = Email.select("bridge").distinct.count
     DISTINCTEMAIL = Email.count
-    BRIDGENAMES = ['Not Yet Classified','Capital','Company','Research','Public Sector', 'Cluster','Global Market','Education','Junk', 'NA']
-    BRIDGEVALUE = [0, 1, 2,3,4,5,6,7,8,9]
+    BRIDGENAMES = ['Not Yet Classified','Capital','Company','Research','Public Sector', 'Cluster','Global Market','Education','Junk']
+    BRIDGEVALUE = [0, 1, 2,3,4,5,6,7,8]
     MINCONTACT = 4
 #query filters
 #bridge filter removes non-essential bridges (junk, misc and non-categorized from the charting queries)

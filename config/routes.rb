@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'emails/total'
   get 'emails/annual'
 
-  root 'emails#index'
+  root 'emails#classify'
 
   #route for import from CSV.
 
