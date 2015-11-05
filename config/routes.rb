@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'emails/classify'
   patch 'emails/classify'
   get 'emails/total'
+  get 'emails/annual'
 
   root 'emails#index'
 

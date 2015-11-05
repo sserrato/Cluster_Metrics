@@ -19,14 +19,13 @@
   <tbody>
     <% @emails.each do |email| %>
       <tr>
-        <td><%= email.email_domain %></td>
+        <td><%= link_to email.email_domain, edit_email_path(email) %></td>
         <td><%= email.bridge %></td>
         <td><%= email.bridge_global %></td>
         <td><%= email.email_frequency %></td>
         <td><%= email.month %></td>
         <td><%= email.year %></td>
         <td><%= email.cluster_id   %></td>
-        <td><%= link_to 'Show', email %></td>
         <td><%= link_to 'Edit', edit_email_path(email) %></td>
         <td><%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
