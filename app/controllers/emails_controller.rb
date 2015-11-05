@@ -13,6 +13,33 @@ class EmailsController < ApplicationController
       @monthContactsNov = Email.where("month = '11'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
       @monthContactsDec = Email.where("month = '12'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
 
+      #chart for monthly contacts grouped by bridge
+          @total_contact = LazyHighCharts::HighChart.new('graph') do |f|
+            f.title(:text => "Contact per month by bridge")
+            f.xAxis(:categories =>  Email::BRIDGENAMES)
+            f.series(:name => "January", :yAxis => 1, :data => @monthContactsJan.map)
+            f.series(:name => "February", :yAxis => 1, :data => @monthContactsFeb.map)
+            f.series(:name => "March", :yAxis => 1, :data => @monthContactsMar.map)
+            f.series(:name => "April", :yAxis => 1, :data => @monthContactsApr.map)
+            f.series(:name => "May", :yAxis => 1, :data => @monthContactsMay.map)
+            f.series(:name => "June", :yAxis => 1, :data => @monthContactsJun.map)
+            f.series(:name => "July", :yAxis => 1, :data => @monthContactsJul.map)
+            f.series(:name => "August", :yAxis => 1, :data => @monthContactsAug.map)
+            f.series(:name => "September", :yAxis => 1, :data => @monthContactsSep.map)
+            f.series(:name => "October", :yAxis => 1, :data => @monthContactsOct.map)
+            f.series(:name => "November", :yAxis => 1, :data => @monthContactsNov.map)
+            f.series(:name => "December", :yAxis => 1, :data => @monthContactsDec.map)
+
+            f.yAxis [
+              {:title => {:text => "", :margin => 0} },
+              {:title => {:text => ""}, :opposite => true},
+            ]
+
+            f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+            f.chart({:defaultSeriesType=>"column"})
+          end
+
+  #below ends the def total
   end
 
 
