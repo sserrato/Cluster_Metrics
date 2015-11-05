@@ -1,5 +1,5 @@
 class EmailsController < ApplicationController
-  before_action :admin_only, except: [:index, :classify, :total, :upload]
+  before_action :admin_only, except: [:index, :classify, :upload]
 
   def annual_report
     @test_2014 = Email.where("year = '2014'").count
