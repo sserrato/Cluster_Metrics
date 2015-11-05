@@ -3,12 +3,26 @@ class Email < ActiveRecord::Base
   belongs_to :cluster
   validates :email_domain, presence: true
 
+#cosntants
     DISTICTDOMAINSCOUNT = Email.select("email_domain").distinct.count
     DISTICTDOMAINSBRIDGE = Email.select("email_domain, bridge").distinct.order('bridge ASC')
     DISTINCTBRIDGECOUNT = Email.select("bridge").distinct.count
     DISTINCTEMAIL = Email.count
     BRIDGENAMES = ['Not Yet Classified','Capital','Company','Research','Public Sector', 'Cluster','Global Market','Education','Junk', 'NA']
     BRIDGEVALUE = [0, 1, 2,3,4,5,6,7,8,9]
+    MINCONTACT = 4
+#query filters
+#bridge filter removes non-essential bridges (junk, misc and non-categorized from the charting queries)
+      scope :bridge_filter, lambda{ where("bridge <> '9999' AND bridge <> 9998 AND bridge <> '0'")}
+      # groups by moonth and orders by month the sum of freqencies.
+      scope :gr_month_or_month_su_frequency, lambda{ group('month').order('month ASC').sum('email_frequency')}
+      #groups and orders by bridge bridge the total frequency
+      scope :gr_bridge_or_bridge_su_frequency, lambda{ group('bridge').order('bridge ASC').sum('email_frequency')}
+      #averages
+      scope :gr_bridge_or_bridge_av_frequency, lambda{ group('bridge').order('bridge ASC').average('email_frequency')}
+      scope :gr_month_or_month_av_frequency, lambda{ group('month').order('month ASC').average('email_frequency')}
+
+
 
 DOMAINHASH =  {"126.com"=>9999,
 "139.com"=>0,

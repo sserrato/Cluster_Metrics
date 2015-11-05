@@ -1,4 +1,20 @@
 class EmailsController < ApplicationController
+  def total
+      @monthContactsJan = Email.where("month = '1'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+      @monthContactsFeb = Email.where("month = '2'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+      @monthContactsMar = Email.where("month = '3'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+      @monthContactsApr = Email.where("month = '4'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+      @monthContactsMay = Email.where("month = '5'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+      @monthContactsJun = Email.where("month = '6'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+      @monthContactsJul = Email.where("month = '7'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+      @monthContactsAug = Email.where("month = '8'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+      @monthContactsSep = Email.where("month = '9'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+      @monthContactsOct = Email.where("month = '10'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+      @monthContactsNov = Email.where("month = '11'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+      @monthContactsDec = Email.where("month = '12'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+
+  end
+
 
   def upload
   end

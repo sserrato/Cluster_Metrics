@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'emails/upload'
   get 'emails/classify'
   patch 'emails/classify'
+  get 'emails/total'
+
   root 'emails#index'
 
   #route for import from CSV.
