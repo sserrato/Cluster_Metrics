@@ -18,7 +18,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "should create user" do
     assert_difference('User.count') do
-      post :create, user: { accss_permission: @user.accss_permission, cluster_id: @user.cluster_id, first_name: @user.first_name, last_name: @user.last_name, password_digest: @user.password_digest, user_email: @user.user_email }
+      post :create, user: { access_permission: @user.access_permission, cluster_id: @user.cluster_id, first_name: @user.first_name, last_name: @user.last_name, password_digest: @user.password_digest, user_email: @user.user_email }
     end
 
     assert_redirected_to user_path(assigns(:user))
@@ -35,7 +35,7 @@ class UsersControllerTest < ActionController::TestCase
   end
 
   test "should update user" do
-    patch :update, id: @user, user: { accss_permission: @user.accss_permission, cluster_id: @user.cluster_id, first_name: @user.first_name, last_name: @user.last_name, password_digest: @user.password_digest, user_email: @user.user_email }
+    patch :update, id: @user, user: { access_permission: @user.access_permission, cluster_id: @user.cluster_id, first_name: @user.first_name, last_name: @user.last_name, password_digest: @user.password_digest, user_email: @user.user_email }
     assert_redirected_to user_path(assigns(:user))
   end
 

@@ -3,15 +3,15 @@
 one:
   first_name: MyString
   last_name: MyString
-  accss_permission: 1
+  access_permission: 1
   user_email: MyString
   password_digest: MyString
-  cluster_id: 
+  cluster_id:
 
 two:
   first_name: MyString
   last_name: MyString
-  accss_permission: 1
+  access_permission: 1
   user_email: MyString
   password_digest: MyString
-  cluster_id: 
+  cluster_id:

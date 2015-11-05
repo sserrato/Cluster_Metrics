@@ -20,7 +20,7 @@ def authenticate
 end
 
 def admin_only
-    unless logged_in? && current_user.access_permission >0
+    unless logged_in? && current_user.access_permission > 0
       flash[:error] = "Restricted Access to SAT Admins Only"
       redirect_to root_path
     end

@@ -1,4 +1,6 @@
 class ClustersController < ApplicationController
+  before_action :admin_only
+
   before_action :set_cluster, only: [:show, :edit, :update, :destroy]
 
   # GET /clusters

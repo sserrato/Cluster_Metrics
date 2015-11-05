@@ -1,6 +1,5 @@
 <p id="notice"><%= notice %></p>
-<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-<h1>Listing Emails</h1>
+<h1>Emails in database</h1>
 
 <table class="table table-striped">
   <thead>
@@ -11,7 +10,6 @@
       <th>Email frequency</th>
       <th>Month</th>
       <th>Year</th>
-      <th>Cluster</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -25,7 +23,6 @@
         <td><%= email.email_frequency %></td>
         <td><%= email.month %></td>
         <td><%= email.year %></td>
-        <td><%= email.cluster_id   %></td>
         <td><%= link_to 'Edit', edit_email_path(email) %></td>
         <td><%= link_to 'Destroy', email, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
