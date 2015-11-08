@@ -1,9 +1,10 @@
 class Email < ActiveRecord::Base
   require 'csv'
+
   belongs_to :cluster
   validates :email_domain, presence: true
 
-#cosntants
+#constants
     DISTICTDOMAINSCOUNT = Email.select("email_domain").distinct.count
     DISTICTDOMAINSBRIDGE = Email.select("email_domain, bridge").distinct.order('bridge ASC')
     DISTINCTBRIDGECOUNT = Email.select("bridge").distinct.count
@@ -11,16 +12,30 @@ class Email < ActiveRecord::Base
     BRIDGENAMES = ['Not Yet Classified','Capital','Company','Research','Public Sector', 'Cluster','Global Market','Education','Junk']
     BRIDGEVALUE = [0, 1, 2,3,4,5,6,7,8]
     MINCONTACT = 4
+    MONTHNAMESMODEL = ["0","Jan","Feb","Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    MONTHVALUESMODEL =  [1,2,3,4,5,6,7,8,9,10,11,12]
+
 #query filters
 #bridge filter removes non-essential bridges (junk, misc and non-categorized from the charting queries)
+scope :gr_month_or_month_su_frequency, lambda{ group('month').order('month ASC').sum('email_frequency')}
+#groups and orders by bridge bridge the total frequency
+scope :gr_bridge_or_bridge_su_frequency, lambda{ group('bridge').order('bridge ASC').sum('email_frequency')}
+#averages
+scope :gr_bridge_or_bridge_av_frequency, lambda{ group('bridge').order('bridge ASC').average('email_frequency')}
+scope :gr_month_or_month_av_frequency, lambda{ group('month').order('month ASC').average('email_frequency')}
+#  scope :with_skill, -> (skill){ joins(:pokemon_skills).where("pokemon_skills.name = ?", skill) }
+scope :by_month, -> (month){ where("'month' = ?", month) }
+
+
+
+      scope :bridge_month, -> (bridge_value){ where("bridge = ?", bridge_value).gr_month_or_month_su_frequency}
+  #  @totalCategory1byMonth = EmailAggregate.where("category = '1'").group('month').order('month ASC').sum('frequency')
+      scope :email_total, -> (month_value){ where("month = '?'", month_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency}
+      #year model
+      scope :average_intensity_year_cluster, ->(bridge_value, month_value, year_value, cluster_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).average("email_frequency")}
+  scope :average_intensity, ->(bridge_value, month_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).average("email_frequency")}
       scope :bridge_filter, lambda{ where("bridge <> '9999' AND bridge <> 9998 AND bridge <> '0'")}
-      # groups by moonth and orders by month the sum of freqencies.
-      scope :gr_month_or_month_su_frequency, lambda{ group('month').order('month ASC').sum('email_frequency')}
-      #groups and orders by bridge bridge the total frequency
-      scope :gr_bridge_or_bridge_su_frequency, lambda{ group('bridge').order('bridge ASC').sum('email_frequency')}
-      #averages
-      scope :gr_bridge_or_bridge_av_frequency, lambda{ group('bridge').order('bridge ASC').average('email_frequency')}
-      scope :gr_month_or_month_av_frequency, lambda{ group('month').order('month ASC').average('email_frequency')}
+      # groups by month and orders by month the sum of freqencies.
 
 
 
@@ -868,7 +883,6 @@ DOMAINHASH =  {"126.com"=>9999,
 "findit-solutions.se"=>9999,
 "hardrockhotelsd.com"=>9999,
 "hotmail.co.uk"=>9999,
-"hotmail.se"=>9999,
 "live.cn"=>9999,
 "marketingland.com"=>9999,
 "microsoft.com"=>9999,

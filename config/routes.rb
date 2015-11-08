@@ -9,7 +9,10 @@ Rails.application.routes.draw do
   patch 'emails/classify'
   get 'emails/total'
   get 'emails/annual'
-
+  get 'emails/metrics'
+  get 'emails/summary'
+  get 'emails/intensity'
+  post 'emails/analytics'
   root 'emails#classify'
 
   #route for import from CSV.

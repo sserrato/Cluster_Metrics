@@ -1,0 +1,88 @@
+<h1>helper tst </h1>
+thelper<%= @test_helper.to_s %>
+<h1>for for year</h1>
+<%= form_tag emails_analytics_path do%>
+  <div class='btn-group btn-lg' data-toggle='buttons'>
+    <label class='btn-lg btn-primary'>
+    <%=radio_button_tag(:year, 2013, class:'btn-lg')%><%= "2013"%>
+    </label>
+    <label class='btn-lg btn-primary'>
+    <%=radio_button_tag(:year, 2014, class:'btn-lg')%><%= "2014"%>
+    </label>
+    <label class='btn-lg btn-primary'>
+    <%=radio_button_tag(:year, 2015, class:'btn-lg')%><%= "2015"%>
+    </label>
+  </div>
+  <div class="actions">
+    <%= submit_tag %>
+  </div>
+<% end %>
+
+<h1>year and cluster variable</h1>
+<span>   <%=  @testb1m1year_cluster  %></span>
+<span>   <%=  @testb1m1year_cluster  %></span>
+<h1>Data Metrics</h1>
+<h4>average intesity</h4>
+<ul>
+<li>b1 m2 = <%= @b1_m2 %></li> <br>
+<li>b2 m2 = <%= @b2_m2 %></li> <br>
+<li><%= @test_average %></li> <br>
+<li><%= @q1 = Email.where("bridge = '1' AND month ='1'").average("email_frequency") %></li> <br>
+<li><%= @average_January %></li> <br>
+<li><%= @average_January %></li> <br>
+</ul>
+<h4> bridge x contacts</h4>
+<ul>
+
+</ul>
+<li><%= @bridge_1 %></li><br>
+<li><%= @bridge_1_long %> bridge long</li><br>
+<li><%= @bridge_2 %></li><br>
+<li><%= @bridge_3 %></li><br>
+<li><%= @bridge_4 %></li><br>
+<li><%= @bridge_5 %></li><br>
+<li><%= @bridge_6 %></li><br>
+<li><%= @bridge_7 %></li><br>
+<h4>total month contacts</h4>
+<%=@month_contacts_January%><br>
+<%=@month_contacts_February%><br>
+<%=@month_contacts_March%><br>
+<%=@month_contacts_April%><br>
+<%=@month_contacts_May%><br>
+<%=@month_contacts_June%><br>
+<%=@month_contacts_July%><br>
+<%=@month_contacts_August%><br>
+<%=@month_contacts_September%><br>
+<%=@month_contacts_October%><br>
+<%=@month_contacts_November%><br>
+<%=@month_contacts_December%><br>
+<ol>
+<a href="#"><li>Total contact</li></a>
+<a href="#"><li>Total volume</li></a>
+<a href="#"><li>Total contacts</li></a>
+<a href="#"><li>Diversity</li></a>
+<a href="#"><li>Average Intensity</li></a>
+<a href="#"><li> Intensity</li></a>
+<a href="#"><li> Annual comparison </li></a>
+<a href="#"><li> Metrics </li></a>
+<a href="#"><li> Constants </li></a>
+</ol>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>column</th>
+
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% "iterator" %>
+      <tr>
+        <td><%= "iteratee item"%></td>
+
+      </tr>
+    <#% end %> #end iterator
+  </tbody>
+</table>
