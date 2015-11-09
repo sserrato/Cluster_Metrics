@@ -15,30 +15,62 @@ class Email < ActiveRecord::Base
     MONTHNAMESMODEL = ["0","Jan","Feb","Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     MONTHVALUESMODEL =  [1,2,3,4,5,6,7,8,9,10,11,12]
 
-#query filters
-#bridge filter removes non-essential bridges (junk, misc and non-categorized from the charting queries)
-scope :gr_month_or_month_su_frequency, lambda{ group('month').order('month ASC').sum('email_frequency')}
-#groups and orders by bridge bridge the total frequency
-scope :gr_bridge_or_bridge_su_frequency, lambda{ group('bridge').order('bridge ASC').sum('email_frequency')}
-#averages
-scope :gr_bridge_or_bridge_av_frequency, lambda{ group('bridge').order('bridge ASC').average('email_frequency')}
-scope :gr_month_or_month_av_frequency, lambda{ group('month').order('month ASC').average('email_frequency')}
-#  scope :with_skill, -> (skill){ joins(:pokemon_skills).where("pokemon_skills.name = ?", skill) }
-scope :by_month, -> (month){ where("'month' = ?", month) }
+#query filters - using scopes with
+#example scopes
+#scope :with_skill, -> (skill){ joins(:pokemon_skills).where("pokemon_skills.name = ?", skill) }
+#scope :by_month, -> (month){ where("'month' = ?", month) }
+
+      #bridge filter removes non-essential bridges (junk, misc and non-categorized from the charting queries)
+      scope :bridge_filter, lambda{ where("bridge <> '9999' AND bridge <> 9998 AND bridge <> '0'")}
+      # groups by month, orders by month, summing email frequency.
+      scope :gr_month_or_month_su_frequency, lambda{ group('month').order('month ASC').sum('email_frequency')}
+      #groups and orders by bridge bridge the total frequency
+      scope :gr_bridge_or_bridge_su_frequency, lambda{ group('bridge').order('bridge ASC').sum('email_frequency')}
+
+      #averages by bridge and month
+      scope :gr_bridge_or_bridge_av_frequency, lambda{ group('bridge').order('bridge ASC').average('email_frequency')}
+      scope :gr_month_or_month_av_frequency, lambda{ group('month').order('month ASC').average('email_frequency')}
+
 
 
 
       scope :bridge_month, -> (bridge_value){ where("bridge = ?", bridge_value).gr_month_or_month_su_frequency}
   #  @totalCategory1byMonth = EmailAggregate.where("category = '1'").group('month').order('month ASC').sum('frequency')
       scope :email_total, -> (month_value){ where("month = '?'", month_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency}
-      #year model
+
+  #scopes with cluster and year
+      #total contact by month, bar chart
       scope :total_contact_month_year_cluster, ->(month_value, year_value, cluster_value){ where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency}
+
+      #Total Volume by month, bridge volume stacked chart
+      scope :total_bridge_year_cluster, ->(bridge_value, year_value, cluster_value){ where("bridge = '?'", bridge_value).where("year ='?'", year_value).where("cluster_id ='?'", cluster_value).where("email_frequency >=?", Email::MINCONTACT).gr_month_or_month_su_frequency}
+
+      #Average intensity by month, barchart for each month
       scope :average_intensity_year_cluster, ->(bridge_value, month_value, year_value, cluster_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).average("email_frequency")}
+
       scope :average_intensity, ->(bridge_value, month_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).average("email_frequency")}
-      scope :bridge_filter, lambda{ where("bridge <> '9999' AND bridge <> 9998 AND bridge <> '0'")}
       # groups by month and orders by month the sum of freqencies.
 
 
+
+      def self.to_csv(options ={})
+        CSV.generate(options) do |csv|
+            csv << column_names
+              all.each do |email|
+                csv << email.attributes.values_at(*column_names)
+          end
+        end
+      end
+
+      #import CSV and set value
+      def self.import(file)
+        CSV.foreach(file.path, headers: true) do |row|
+          row.to_hash
+          row[:bridge] = DOMAINHASH.fetch((row.to_hash[:email_domain.to_s]),0)
+          #row[:email_domain] = (((row.to_hash)[:email_domain.to_s]) + "added")
+          Email.create! row.to_hash
+        end
+      end
 
 DOMAINHASH =  {"126.com"=>9999,
 "163.com"=>9999,
@@ -1099,22 +1131,4 @@ DOMAINHASH =  {"126.com"=>9999,
 "yugongyishan.com"=>6}
 
 
-def self.to_csv(options ={})
-  CSV.generate(options) do |csv|
-      csv << column_names
-        all.each do |email|
-          csv << email.attributes.values_at(*column_names)
-    end
-  end
-end
-
-#import CSV and set value
-def self.import(file)
-  CSV.foreach(file.path, headers: true) do |row|
-    row.to_hash
-    row[:bridge] = DOMAINHASH.fetch((row.to_hash[:email_domain.to_s]),0)
-    #row[:email_domain] = (((row.to_hash)[:email_domain.to_s]) + "added")
-    Email.create! row.to_hash
-  end
-end
 end
