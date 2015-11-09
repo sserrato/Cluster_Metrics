@@ -40,7 +40,8 @@ class Email < ActiveRecord::Base
       scope :total_contact_month_year_cluster, ->(month_value, year_value, cluster_value){ where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency}
 
       #Total Volume by month, bridge volume stacked chart
-      scope :total_bridge_year_cluster, ->(bridge_value, year_value, cluster_value){ where("bridge = '?'", bridge_value).where("year ='?'", year_value).where("cluster_id ='?'", cluster_value).where("email_frequency >=?", Email::MINCONTACT).group('month').order('month ASC').sum('email_frequency')}
+      scope :total_bridge_year_cluster, ->(bridge_value, year_value, cluster_value){ where("bridge = '?'", bridge_value).where("year ='?'", year_value).where("cluster_id ='?'", cluster_value).where("email_frequency >='?'", Email::MINCONTACT).group('month').order('month ASC').sum('email_frequency')}
+      # stacked_bar is used in the stacked chart the above is not functional.
       scope :stacked_bar, ->(bridge_value, year_value, cluster_value){where("bridge = '?'", bridge_value).where("year = '?'", year_value).where("cluster_id = '?'", cluster_value).gr_month_or_month_su_frequency}
       #Average intensity by month, barchart for each month
       scope :average_intensity_year_cluster, ->(bridge_value, month_value, year_value, cluster_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).average("email_frequency")}

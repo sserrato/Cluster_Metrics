@@ -463,6 +463,9 @@ end #end def intensity 2013
     #end below ends annual_report
   end
 
+  def diversity
+  end
+
   def total
       @total_Jan_2014 =  (Email.total_contact_month_year_cluster(1,2014,3)).map
       @total_Feb_2014 =  (Email.total_contact_month_year_cluster(2,2014,3)).map
