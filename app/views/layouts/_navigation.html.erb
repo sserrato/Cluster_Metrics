@@ -17,6 +17,14 @@
         <%= link_to 'Overview', root_path, class: 'navbar-brand' %>
         <%= link_to 'Metrics', emails_total_path, class: 'navbar-brand' %>
         <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Metrics <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Total",  emails_total_path %> </li>
+            <li><%= link_to "Volume",  emails_volume_path %> </li>
+            <li><%= link_to "Average intensity",  emails_intensity_path %> </li>
+          </ul>
+        </li>
+        <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><%= link_to "Upload emails domain records",  emails_upload_path %> </li>

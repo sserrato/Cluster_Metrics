@@ -22,6 +22,12 @@ Rails.application.routes.draw do
   get 'emails/intensity2016'
   get 'emails/intensity2017'
   get 'emails/intensity2018'
+  get 'emails/volume'
+  get 'emails/volume2013'
+  get 'emails/volume2015'
+  get 'emails/volume2016'
+  get 'emails/volume2017'
+  get 'emails/volume2018'
   post 'emails/analytics'
   root 'emails#classify'
 

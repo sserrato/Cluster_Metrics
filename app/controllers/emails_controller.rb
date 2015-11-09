@@ -15,6 +15,43 @@ class EmailsController < ApplicationController
       redirect_to emails_metrics_path, notice: "reset year"
   end #end def analytics
 
+  def volume
+    @test_volume = Email.total_bridge_year_cluster(2,2014,3)
+    @email = Email.where("bridge = '1' AND cluster_id = '3' AND year = '2014'").sum("email_frequency")
+    #volume requires Bridge_ID, Year, Cluster ID
+    @bridge1_2014_volume = (Email.total_bridge_year_cluster(1,2014,3)).map
+    @bridge2_2014_volume = (Email.total_bridge_year_cluster(2,2014,3)).map
+    @bridge3_2014_volume = (Email.total_bridge_year_cluster(3,2014,3)).map
+    @bridge4_2014_volume = (Email.total_bridge_year_cluster(4,2014,3)).map
+    @bridge5_2014_volume = (Email.total_bridge_year_cluster(5,2014,3)).map
+    @bridge6_2014_volume = (Email.total_bridge_year_cluster(6,2014,3)).map
+    @bridge7_2014_volume = (Email.total_bridge_year_cluster(7,2014,3)).map
+
+
+    @email2 = Email.stacked_bar(3, 2014, 3)
+    @volume2014 = LazyHighCharts::HighChart.new('graph') do |f|
+    f.title(:text => "Total Volume of Communication across Bridges")
+    f.xAxis(:categories => Email::MONTHNAMESMODEL)
+    f.series(:name => "Capital", :yAxis => 0, :data => @bridge1_2014_volume)
+    f.series(:name => "Company", :yAxis => 0, :data => @bridge2_2014_volume)
+    f.series(:name => "Research", :yAxis => 0, :data => @bridge3_2014_volume)
+    f.series(:name => "Public Sector", :yAxis => 0, :data => @bridge4_2014_volume)
+    f.series(:name => "Cluster", :yAxis => 0, :data => @bridge5_2014_volume)
+    f.series(:name => "Global Market", :yAxis => 0, :data => @bridge6_2014_volume)
+    f.series(:name => "Education", :yAxis => 0, :data => @totalCategory7byMonth)
+
+    f.yAxis [
+      {:title => {:text => "", :margin => 0} },
+      {:title => {:text => "Contacts per month"}, :opposite => true},
+    ]
+
+    f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+    f.chart({:defaultSeriesType=>"column"})
+    f.plot_options({:column=>{:stacking=>"normal"}})
+  end
+
+  end # end def volume
+
   def intensity
     # year = 2014
     #2014 - Jan
