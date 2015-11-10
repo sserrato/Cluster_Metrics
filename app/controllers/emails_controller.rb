@@ -462,7 +462,20 @@ end #end def intensity 2013
   end
 
   def diversity
+    @jan_diversity = []
+    @feb_diversity = []
+    @mar_diversity = []
+    @apr_diversity = []
+    @may_diversity = []
+    @jun_diversity = []
+    @jul_diversity = []
+    @aug_diversity = []
+    @sep_diversity = []
+    @oct_diversity = []
+    @nov_diversity = []
+    @dec_diversity = []
     # unique domains contacted within a month
+
     @jan_distinct_2014 = Email.diversity_metric(1,2014,3).values
     @feb_distinct_2014 = Email.diversity_metric(2,2014,3).values
     @mar_distinct_2014 = Email.diversity_metric(3,2014,3).values
@@ -476,21 +489,73 @@ end #end def intensity 2013
     @nov_distinct_2014 = Email.diversity_metric(11,2014,3).values
     @dec_distinct_2014 = Email.diversity_metric(12,2014,3).values
 
+    #diversity metrics
+    @diversity_goals = Goal.diversity_goals(3)
+
+    #processing the time period results
+    @jan_distinct_2014.each_with_index do |d, i|
+          @jan_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
+    @feb_distinct_2014.each_with_index do |d, i|
+          @feb_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
+    @mar_distinct_2014.each_with_index do |d, i|
+          @mar_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
+    @apr_distinct_2014.each_with_index do |d, i|
+          @apr_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
+    @may_distinct_2014.each_with_index do |d, i|
+          @may_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
+    @jun_distinct_2014.each_with_index do |d, i|
+          @jun_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
+    @jul_distinct_2014.each_with_index do |d, i|
+          @jul_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
+    @aug_distinct_2014.each_with_index do |d, i|
+          @aug_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
+    @sep_distinct_2014.each_with_index do |d, i|
+          @sep_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
+    @oct_distinct_2014.each_with_index do |d, i|
+          @oct_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
+    @nov_distinct_2014.each_with_index do |d, i|
+          @nov_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
+    @dec_distinct_2014.each_with_index do |d, i|
+          @dec_diversity.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+    end
+
     @diversity_2014 = LazyHighCharts::HighChart.new('graph') do |f|
       f.title(:text => "2014 Contact Gap - Actual vs Goal Unique Contacts")
       f.xAxis(:categories =>  ["Capital", "Company", "Research", "Public Sector", "Cluster", "Global Market", "Education"])
-      f.series(:name => "January", :yAxis => 1, :data => @jan_distinct_2014 )
-      f.series(:name => "February", :yAxis => 1, :data => @feb_distinct_2014)
-      f.series(:name => "March", :yAxis => 1, :data => @mar_distinct_2014)
-      f.series(:name => "April", :yAxis => 1, :data => @apr_distinct_2014)
-      f.series(:name => "May", :yAxis => 1, :data => @may_distinct_2014)
-      f.series(:name => "June", :yAxis => 1, :data => @jun_distinct_2014)
-      f.series(:name => "July", :yAxis => 1, :data => @jul_distinct_2014)
-      f.series(:name => "August", :yAxis => 1, :data => @aug_distinct_2014)
-      f.series(:name => "September", :yAxis => 1, :data => @sep_distinct_2014)
-      f.series(:name => "October", :yAxis => 1, :data => @oct_distinct_2014)
-      f.series(:name => "November", :yAxis => 1, :data => @nov_distinct_2014)
-      f.series(:name => "December", :yAxis => 1, :data => @dec_distinct_2014)
+      f.series(:name => "January", :yAxis => 1, :data => @jan_diversity )
+      f.series(:name => "February", :yAxis => 1, :data => @feb_diversity)
+      f.series(:name => "March", :yAxis => 1, :data => @mar_diversity)
+      f.series(:name => "April", :yAxis => 1, :data => @apr_diversity)
+      f.series(:name => "May", :yAxis => 1, :data => @may_diversity)
+      f.series(:name => "June", :yAxis => 1, :data => @jun_diversity)
+      f.series(:name => "July", :yAxis => 1, :data => @jul_diversity)
+      f.series(:name => "August", :yAxis => 1, :data => @aug_diversity)
+      f.series(:name => "September", :yAxis => 1, :data => @sep_diversity)
+      f.series(:name => "October", :yAxis => 1, :data => @oct_diversity)
+      f.series(:name => "November", :yAxis => 1, :data => @nov_diversity)
+      f.series(:name => "December", :yAxis => 1, :data => @dec_diversity)
 
       f.yAxis [
         {:title => {:text => "", :margin => 0} },

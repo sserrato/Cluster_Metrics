@@ -11,7 +11,7 @@ Goal.delete_all
 
 
 goals_fpx  = [
-  ["Capital", 6, 5, 1, 3],
+["Capital", 6, 5, 1, 3],
 ["Company", 4, 150, 2, 3],
 ["Research", 6, 15, 3, 3],
 ["Public Sector", 4, 40, 4, 3],
@@ -19,7 +19,7 @@ goals_fpx  = [
 ["Global Market", 2, 30, 6, 3],
 ["Education", 4, 40, 7, 3],
 ["Not Yet Classified", 1, 1, 0, 3],
-["Junk", 1, 1, 9998, 3] 
+["Junk", 1, 1, 9998, 3]
 ]
 
 goals_fpx.each do | bridge_name, intensity, diversity, sat_bridge, cluster_id |

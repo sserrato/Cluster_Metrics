@@ -1,13 +1,37 @@
 <ul class="nav nav-pills">
-  <li role="presentation"><%= link_to '2013', emails_intensity2013_path %></li>
-  <li role="presentation" class="active"><%= link_to '2014', emails_intensity_path %></li>
-  <li role="presentation"><%= link_to '2015', emails_intensity2013_path %></li>
-  <li role="presentation"><%= link_to '2016', emails_intensity2016_path %></li>
-  <li role="presentation"><%= link_to '2017', emails_intensity2016_path %></li>
-  <li role="presentation"><%= link_to '2018', emails_intensity2016_path %></li>
+  <li role="presentation"><%=link_to '2013', emails_intensity2013_path %></li>
+  <li role="presentation" class="active"><%=link_to '2014', emails_intensity_path %></li>
+  <li role="presentation"><%=link_to '2015', emails_intensity2013_path %></li>
+  <li role="presentation"><%=link_to '2016', emails_intensity2016_path %></li>
+  <li role="presentation"><%=link_to '2017', emails_intensity2016_path %></li>
+  <li role="presentation"><%=link_to '2018', emails_intensity2016_path %></li>
 </ul>
-<%= high_chart("some_id", @diversity_2014) %>
+<%=high_chart("some_id", @diversity_2014) %>
+<!-- <div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Goals</h3>
+  </div>
+  <div class="panel-body">
+  Goals scoped<%#=Goal.diversity_goals(3) %><br>
+    @jan_diversity<%#=  @jan_diversity %><br>
+    @diversity_goals<%#=  @diversity_goals %><br>
+    @jan_distinct_2014 <%#=@jan_distinct_2014  %> <br>
+    @jan_distinct_2014[0] <%#=@jan_distinct_2014[0]  %> <br>
+    @diversity_goals[0]<%#=  @diversity_goals[0]  %> <br>
+  @jan_distinct_2014/ div goal <%=( @jan_distinct_2014[0]/ @diversity_goals[0]).to_f%> , @jan_distinct_2014[1], @jan_distinct_2014[2], @jan_distinct_2014[3],@jan_distinct_2014[4],@jan_distinct_2014[5],@jan_distinct_2014[6]  %> <br>
+<% @array_test = [] %>
+  @jan_distinct_2014  div goal sround 3 <%=( (@jan_distinct_2014[0]).to_f  / (@diversity_goals[0]).to_f).round(3)%>
 
+  , @jan_distinct_2014[1], @jan_distinct_2014[2], @jan_distinct_2014[3],@jan_distinct_2014[4],@jan_distinct_2014[5],@jan_distinct_2014[6]  %> <br>
+5/2 <%=( 5 / 2).round(3)%><br> , @jan_distinct_2014[1], @jan_distinct_2014[2], @jan_distinct_2014[3],@jan_distinct_2014[4],@jan_distinct_2014[5],@jan_distinct_2014[6]  %> <br>
+<h1>Do without each</h1>
+<% @jan_distinct_2014.each_with_index do |d, i| %>
+
+this is the distinct jan value for <%#=d %><br>
+this is the diversity goal<%#=@diversity_goals[i] %><br>
+<% end %>
+  </div>
+</div>
 <h1>diversity</h1>
 <div class="panel panel-default">
   <div class="panel-heading">
@@ -15,7 +39,7 @@
   </div>
   <div class="panel-body">
 
-    email counts<%= Email.count %>
+    email counts<%#=Email.count %>
   </div>
 </div>
 <div class="panel panel-default">
@@ -23,9 +47,9 @@
     <h3 class="panel-title">Month / year </h3>
   </div>
   <div class="panel-body">
-distinct DOMAINHASH - Prototype for diversity base date <%=    @test22 %><br>
-distinct domain values <%=    @test22.values %><br>
-distinct domain keys <%=    @test22.keys %><br>
+distinct DOMAINHASH - Prototype for diversity base date <%#=   @test22 %><br>
+distinct domain values <%#=   @test22.values %><br>
+distinct domain keys <%#=   @test22.keys %><br>
 </div>
 </div>
 <div class="panel panel-default">
@@ -34,9 +58,9 @@ distinct domain keys <%=    @test22.keys %><br>
   </div>
   <div class="panel-body">
 distinct domain <%#=    @test11 %>
-distinct domain <%=  @domains_hash%>
-distinct domain values <%=  @domains_hash.values%>
-distinct domain keys <%=  @domains_hash.keys%>
+distinct domain <%#= @domains_hash%>
+distinct domain values <%#= @domains_hash.values%>
+distinct domain keys <%#= @domains_hash.keys%>
 </div>
 </div>
 <div class="panel panel-default">
@@ -44,17 +68,17 @@ distinct domain keys <%=  @domains_hash.keys%>
     <h3 class="panel-title">all distinct domains in data set </h3>
   </div>
   <div class="panel-body">
-count of email records <%=  Email.count%><br>
-distinctive domains<%=  @all_domains_hash%><br>
+count of email records <%#= Email.count%><br>
+distinctive domains<%#= @all_domains_hash%><br>
 <h1>hash values</h1>
-fetch hash value from  @all_domains_hash. <%=  @all_domains_hash.fetch("126.com")%><br>
+fetch hash value from  @all_domains_hash. <%#= @all_domains_hash.fetch("126.com")%><br>
 <h1>hash keys</h1>
-@all_domains_hash.keys.each <%=  @all_domains_hash.keys.each do |k1|%><br>
+@all_domains_hash.keys.each <%#= @all_domains_hash.keys.each do |k1|%><br>
 <ol>
-  <li><%= k1 %></li>
+  <li><%#=k1 %></li>
 </ol>
 <%end%>
-distinct domain keys <%=  @all_domains_hash.keys.count%><br>
+distinct domain keys <%#= @all_domains_hash.keys.count%><br>
 <h1>distinct domain</h1>
 Email.distinct("email_domain").uniq.pluck("email_domain, bridge").to_h<%=Email.distinct("email_domain").uniq.pluck("email_domain, bridge").to_h%><br>
 Email.distinct("email_domain").pluck("email_domain, bridge")<%=Email.distinct("email_domain").pluck("email_domain, bridge")%><br>
@@ -63,10 +87,10 @@ all_domains_hash_object keys<%#=@all_domains_hash_object.keys%><br>
 all_domains_hash_object count<%#=@all_domains_hash_object.count%><br>
 
 all_domains_hash_object<%=@all_domains_hash_object%><br>
-goal is domain and bridge value distinct  <%= @all_domains_hash_name%><br>
-goal is domain and bridge value distinct  <%#= @all_domains_hash_name.to_h%><br>
-  @all_domains_t2  <%=   @all_domains_t2.inspect%><br>
-scope test for diversity <%=   Email.diversity_metric(1,2014,3).values%><br>
-scope test for diversity <%=   Email.diversity_metric(1,2014,3).length%><br>
+goal is domain and bridge value distinct  <%#=@all_domains_hash_name%><br>
+
+  @all_domains_t2  <%#=  @all_domains_t2.inspect%><br>
+scope test for diversity <%#=  Email.diversity_metric(1,2014,3).values%><br>
+scope test for diversity <%#=  Email.diversity_metric(1,2014,3).length%><br>
 </div>
-</div>
+</div> -->
