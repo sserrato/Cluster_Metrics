@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Goals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Bridge name</th>
+      <th>Intensity</th>
+      <th>Diversity</th>
+      <th>Sat bridge</th>
+      <th>Cluster</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @goals.each do |goal| %>
+      <tr>
+        <td><%= goal.bridge_name %></td>
+        <td><%= goal.intensity %></td>
+        <td><%= goal.diversity %></td>
+        <td><%= goal.sat_bridge %></td>
+        <td><%= goal.cluster_id %></td>
+        <td><%= link_to 'Show', goal %></td>
+        <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
+        <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Goal', new_goal_path %>

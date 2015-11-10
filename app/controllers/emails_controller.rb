@@ -450,8 +450,6 @@ end #end def intensity 2013
           f.series(:name => "2014", :yAxis => 1, :data => @report_2014.map)
 
 
-
-
           f.yAxis [
             {:title => {:text => "", :margin => 0} },
             {:title => {:text => ""}, :opposite => true},
@@ -464,7 +462,58 @@ end #end def intensity 2013
   end
 
   def diversity
-  end
+    # unique domains contacted within a month
+    @jan_distinct_2014 = Email.diversity_metric(1,2014,3).values
+    @feb_distinct_2014 = Email.diversity_metric(2,2014,3).values
+    @mar_distinct_2014 = Email.diversity_metric(3,2014,3).values
+    @apr_distinct_2014 = Email.diversity_metric(4,2014,3).values
+    @may_distinct_2014 = Email.diversity_metric(5,2014,3).values
+    @jun_distinct_2014 = Email.diversity_metric(6,2014,3).values
+    @jul_distinct_2014 = Email.diversity_metric(7,2014,3).values
+    @aug_distinct_2014 = Email.diversity_metric(8,2014,3).values
+    @sep_distinct_2014 = Email.diversity_metric(9,2014,3).values
+    @oct_distinct_2014 = Email.diversity_metric(10,2014,3).values
+    @nov_distinct_2014 = Email.diversity_metric(11,2014,3).values
+    @dec_distinct_2014 = Email.diversity_metric(12,2014,3).values
+
+    @diversity_2014 = LazyHighCharts::HighChart.new('graph') do |f|
+      f.title(:text => "2014 Contact Gap - Actual vs Goal Unique Contacts")
+      f.xAxis(:categories =>  ["Capital", "Company", "Research", "Public Sector", "Cluster", "Global Market", "Education"])
+      f.series(:name => "January", :yAxis => 1, :data => @jan_distinct_2014 )
+      f.series(:name => "February", :yAxis => 1, :data => @feb_distinct_2014)
+      f.series(:name => "March", :yAxis => 1, :data => @mar_distinct_2014)
+      f.series(:name => "April", :yAxis => 1, :data => @apr_distinct_2014)
+      f.series(:name => "May", :yAxis => 1, :data => @may_distinct_2014)
+      f.series(:name => "June", :yAxis => 1, :data => @jun_distinct_2014)
+      f.series(:name => "July", :yAxis => 1, :data => @jul_distinct_2014)
+      f.series(:name => "August", :yAxis => 1, :data => @aug_distinct_2014)
+      f.series(:name => "September", :yAxis => 1, :data => @sep_distinct_2014)
+      f.series(:name => "October", :yAxis => 1, :data => @oct_distinct_2014)
+      f.series(:name => "November", :yAxis => 1, :data => @nov_distinct_2014)
+      f.series(:name => "December", :yAxis => 1, :data => @dec_distinct_2014)
+
+      f.yAxis [
+        {:title => {:text => "", :margin => 0} },
+        {:title => {:text => "% achieved"}, :opposite => true},
+      ]
+      #f.options[:tooltip][:formatter] = "function(){ return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %'; }"
+
+      f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+      f.chart({:defaultSeriesType=>"column"})
+    end
+
+
+
+    @distinct_domain_count = Email.select("email_domain").distinct.count
+    @test22 = Email.where("month ='1' AND year = '2014' AND cluster_id = '3' AND bridge <> '0' AND bridge <> '9999' AND bridge <> '9998'").select("email_domain").group("bridge").order("bridge").distinct.count
+    @test11 = Email.where("month ='1'").select("email_domain").group("bridge").distinct.count
+    @domains_hash = Email.where("month ='1'").select("email_domain").group("email_domain").distinct.count
+
+    @all_domains_hash = Email.select("email_domain").group("email_domain").order("email_domain").distinct.count
+    @all_domains_hash_object = Email.select("email_domain, bridge").distinct.where("bridge <> '9999' AND bridge <> '9998' AND email_frequency >='4'").order('bridge ASC')
+    @all_domains_hash_name = Email.select("email_domain, bridge").distinct.where("bridge <> '9999' AND bridge <> '9998' AND email_frequency >='4'").order('bridge ASC')
+    @all_domains_t2 = Email.select("email_domain, bridge").distinct.where("bridge <> '9999' AND bridge <> '9998' AND email_frequency >='4'")
+  end# end diversity
 
   def total
       @total_Jan_2014 =  (Email.total_contact_month_year_cluster(1,2014,3)).map
@@ -480,6 +529,7 @@ end #end def intensity 2013
       @total_Nov_2014 =  (Email.total_contact_month_year_cluster(11,2014,3)).map
       @total_Dec_2014 =  (Email.total_contact_month_year_cluster(12,2014,3)).map
 
+        #older long form vars
       @month_contacts_Jan = Email.where("month = '1'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
       @month_contacts_Feb = Email.where("month = '2'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
       @month_contacts_Mar = Email.where("month = '3'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency

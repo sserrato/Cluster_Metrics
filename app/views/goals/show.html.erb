@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bridge name:</strong>
+  <%= @goal.bridge_name %>
+</p>
+
+<p>
+  <strong>Intensity:</strong>
+  <%= @goal.intensity %>
+</p>
+
+<p>
+  <strong>Diversity:</strong>
+  <%= @goal.diversity %>
+</p>
+
+<p>
+  <strong>Sat bridge:</strong>
+  <%= @goal.sat_bridge %>
+</p>
+
+<p>
+  <strong>Clusters:</strong>
+  <%= @goal.cluster_id %>
+</p>
+
+<%= link_to 'Edit', edit_goal_path(@goal) %> |
+<%= link_to 'Back', goals_path %>

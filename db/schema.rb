@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104215434) do
+ActiveRecord::Schema.define(version: 20151109225519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(version: 20151104215434) do
 
   add_index "emails", ["cluster_id"], name: "index_emails_on_cluster_id", using: :btree
 
+  create_table "goals", force: :cascade do |t|
+    t.string   "bridge_name"
+    t.integer  "intensity"
+    t.integer  "diversity"
+    t.integer  "sat_bridge"
+    t.integer  "cluster_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "goals", ["cluster_id"], name: "index_goals_on_cluster_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
@@ -58,5 +70,6 @@ ActiveRecord::Schema.define(version: 20151104215434) do
   add_index "users", ["cluster_id"], name: "index_users_on_cluster_id", using: :btree
 
   add_foreign_key "emails", "clusters"
+  add_foreign_key "goals", "clusters"
   add_foreign_key "users", "clusters"
 end

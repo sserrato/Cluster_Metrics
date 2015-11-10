@@ -1,0 +1,37 @@
+<%= form_for(@goal) do |f| %>
+  <% if @goal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
+
+      <ul>
+      <% @goal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bridge_name %><br>
+    <%= f.text_field :bridge_name %>
+  </div>
+  <div class="field">
+    <%= f.label :intensity %><br>
+    <%= f.number_field :intensity %>
+  </div>
+  <div class="field">
+    <%= f.label :diversity %><br>
+    <%= f.text_field :diversity %>
+  </div>
+  <div class="field">
+    <%= f.label :sat_bridge %><br>
+    <%= f.number_field :sat_bridge %>
+  </div>
+  <div class="field">
+    <%= f.label :cluster_id %><br>
+    <%= f.text_field :cluster_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bridge_name: MyString
+  intensity: 1
+  diversity: 
+  sat_bridge: 1
+  clusters_id: 
+
+two:
+  bridge_name: MyString
+  intensity: 1
+  diversity: 
+  sat_bridge: 1
+  clusters_id: 

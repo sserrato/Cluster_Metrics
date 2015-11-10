@@ -43,6 +43,12 @@ class Email < ActiveRecord::Base
       scope :total_bridge_year_cluster, ->(bridge_value, year_value, cluster_value){ where("bridge = '?'", bridge_value).where("year ='?'", year_value).where("cluster_id ='?'", cluster_value).where("email_frequency >='?'", Email::MINCONTACT).group('month').order('month ASC').sum('email_frequency')}
       # stacked_bar is used in the stacked chart the above is not functional.
       scope :stacked_bar, ->(bridge_value, year_value, cluster_value){where("bridge = '?'", bridge_value).where("year = '?'", year_value).where("cluster_id = '?'", cluster_value).gr_month_or_month_su_frequency}
+
+      #diversity calc
+      scope :diversity_metric, -> (month_value, year_value, cluster_value){where("month = '?'", month_value).where("year = '?'", year_value).where("cluster_id ='?'", cluster_value).where("bridge <> '0' AND bridge <> '9999' AND bridge <> '9998'").select("email_domain").group("bridge").order("bridge").distinct.count}
+      @test22 = Email.where("month ='1' AND year = '2014' AND cluster_id = '3' AND bridge <> '0' AND bridge <> '9999' AND bridge <> '9998'").select("email_domain").group("bridge").order("bridge").distinct.count
+
+
       #Average intensity by month, barchart for each month
       scope :average_intensity_year_cluster, ->(bridge_value, month_value, year_value, cluster_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).average("email_frequency")}
 

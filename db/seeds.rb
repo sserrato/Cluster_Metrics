@@ -5,6 +5,28 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Email.delete_all
+Goal.delete_all
+
+
+goals_fpx  = [
+  ["Capital", 6, 5, 1, 3],
+["Company", 4, 150, 2, 3],
+["Research", 6, 15, 3, 3],
+["Public Sector", 4, 40, 4, 3],
+["Cluster", 4, 25, 5, 3],
+["Global Market", 2, 30, 6, 3],
+["Education", 4, 40, 7, 3],
+["Not Yet Classified", 1, 1, 0, 3],
+["Junk", 1, 1, 9998, 3] 
+]
+
+goals_fpx.each do | bridge_name, intensity, diversity, sat_bridge, cluster_id |
+  Goal.create(bridge_name: bridge_name, intensity:intensity, diversity:diversity, sat_bridge:sat_bridge, cluster_id: cluster_id)
+end
+
+
  emaildata2014 = [
   ["fpx.se",9998,0,1997,3,2014,3],
 ["fpx.se",9998,0,1898,2,2014,3],

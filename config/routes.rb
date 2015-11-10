@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :goals
   resources :users, only: [:index, :new, :create, :edit, :update, :show]
   resources :sessions, :only => [:new, :create, :destroy]
   resources :emails, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -28,6 +29,12 @@ Rails.application.routes.draw do
   get 'emails/volume2016'
   get 'emails/volume2017'
   get 'emails/volume2018'
+  get 'emails/diversity'
+  get 'emails/diversity2013'
+  get 'emails/diversity2015'
+  get 'emails/diversity2016'
+  get 'emails/diversity2017'
+  get 'emails/diversity2018'
   post 'emails/analytics'
   root 'emails#classify'
 
