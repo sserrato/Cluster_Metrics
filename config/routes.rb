@@ -35,6 +35,12 @@ Rails.application.routes.draw do
   get 'emails/diversity2016'
   get 'emails/diversity2017'
   get 'emails/diversity2018'
+  get 'emails/intensity_achieved'
+  get 'emails/intensity_achieved2013'
+  get 'emails/intensity_achieved2015'
+  get 'emails/intensity_achieved2016'
+  get 'emails/intensity_achieved2017'
+  get 'emails/intensity_achieved2018'
   post 'emails/analytics'
   root 'emails#classify'
 

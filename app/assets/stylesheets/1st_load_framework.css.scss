@@ -33,6 +33,17 @@ img {
   }
 // apply styles to HTML elements
 // to make views framework-neutral
+@import url(https://fonts.googleapis.com/css?family=Biryani:400,800);
+ @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
+nav {
+   font-family: "Biryani", Helvetica, sans-serif !important;
+}
+
+html {
+   	font-family: "Biryani", Helvetica, sans-serif;
+}
+
 main {
   @extend .container;
   background-color: #eee;
