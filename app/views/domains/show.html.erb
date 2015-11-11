@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @domain.url %>
+</p>
+
+<p>
+  <strong>Sat bridge:</strong>
+  <%= @domain.sat_bridge %>
+</p>
+
+<p>
+  <strong>Clusters:</strong>
+  <%= @domain.cluster_id %>
+</p>
+
+<p>
+  <strong>Global bridge:</strong>
+  <%= @domain.global_bridge %>
+</p>
+
+<%= link_to 'Edit', edit_domain_path(@domain) %> |
+<%= link_to 'Back', domains_path %>
