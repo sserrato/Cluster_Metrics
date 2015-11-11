@@ -76,6 +76,15 @@ class Email < ActiveRecord::Base
         end
       end
 
+@domains = Domain.all
+$DOMAIN_HASHES = {}
+
+@domains.each do |d|
+  $DOMAIN_HASHES[d.url] = d.sat_bridge
+end
+
+
+
 DOMAINHASH =  {"126.com"=>9999,
 "163.com"=>9999,
 "4itab.com"=>2,

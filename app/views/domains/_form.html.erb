@@ -1,0 +1,33 @@
+<%= form_for(@domain) do |f| %>
+  <% if @domain.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@domain.errors.count, "error") %> prohibited this domain from being saved:</h2>
+
+      <ul>
+      <% @domain.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </div>
+  <div class="field">
+    <%= f.label :sat_bridge %><br>
+    <%= f.number_field :sat_bridge %>
+  </div>
+  <div class="field">
+    <%= f.label :cluster_id %><br>
+    <%= f.text_field :cluster_id %>
+  </div>
+  <div class="field">
+    <%= f.label :global_bridge %><br>
+    <%= f.number_field :global_bridge %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

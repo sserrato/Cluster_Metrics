@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  url: MyString
+  sat_bridge: 1
+  clusters_id: 
+  global_bridge: 1
+
+two:
+  url: MyString
+  sat_bridge: 1
+  clusters_id: 
+  global_bridge: 1
