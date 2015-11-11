@@ -14,10 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require_tree .
-//= require highcharts/modules/dark-unica
-//= require highcharts/modules/exporting
-//= require highcharts/modules/export-csv
 //= require highcharts/highcharts
 //= require highcharts/highcharts-more
 //= require highcharts/highstock
+//= require highcharts/modules/dark-unica
+//= require highcharts/modules/exporting
+//= require highcharts/modules/export-csv
+//= require_tree .
