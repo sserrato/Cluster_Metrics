@@ -1,7 +1,8 @@
 <div class="container">
   <h1>Upload email domains from CSV</h1>
   <%#= $DOMAIN_HASHES.values %>
-  <%#= $DOMAIN_HASHES.keys %> 
+  <%#= $DOMAIN_HASHES.keys %>
+  <%= current_user.cluster_id%> 
   <p class="btn-lg">
     <%= form_tag emails_import_path, multipart: true do%>
     <%= file_field_tag :file%><%= submit_tag "Upload email data", class: "btn btn-primary btn-lg" %>

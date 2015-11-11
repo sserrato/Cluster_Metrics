@@ -47,7 +47,6 @@ class Email < ActiveRecord::Base
       #diversity calc
       scope :diversity_metric, -> (month_value, year_value, cluster_value){where("month = '?'", month_value).where("year = '?'", year_value).where("cluster_id ='?'", cluster_value).where("bridge <> '0' AND bridge <> '9999' AND bridge <> '9998'").select("email_domain").group("bridge").order("bridge").distinct.count}
 
-
       #Average intensity by month, barchart for each month
       scope :average_intensity_year_cluster, ->(bridge_value, month_value, year_value, cluster_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).average("email_frequency")}
       scope :sum_intensity_year_cluster, ->(bridge_value, month_value, year_value, cluster_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).sum("email_frequency")}
@@ -69,12 +68,13 @@ class Email < ActiveRecord::Base
         CSV.foreach(file.path, headers: true) do |row|
           row.to_hash
           row[:bridge] = DOMAINHASH.fetch((row.to_hash[:email_domain.to_s]),0)
-          #row[:email_domain] = (((row.to_hash)[:email_domain.to_s]) + "added")
+          row[:cluster_id] = 3
+          ##row[:email_domain] = (((row.to_hash)[:email_domain.to_s]) + "added")
           Email.create! row.to_hash
         end
       end
 
-#hash for look up and persistence model. 
+#hash for look up and persistence model.
 # @domains = Domain.all
 # $DOMAIN_HASHES = {}
 
