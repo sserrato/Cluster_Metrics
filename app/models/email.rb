@@ -55,8 +55,6 @@ class Email < ActiveRecord::Base
       scope :average_intensity, ->(bridge_value, month_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).average("email_frequency")}
       # groups by month and orders by month the sum of freqencies.
 
-
-
       def self.to_csv(options ={})
         CSV.generate(options) do |csv|
             csv << column_names
@@ -76,13 +74,14 @@ class Email < ActiveRecord::Base
         end
       end
 
-@domains = Domain.all
-$DOMAIN_HASHES = {}
+#hash for look up and persistence model. 
+# @domains = Domain.all
+# $DOMAIN_HASHES = {}
 
-@domains.each do |d|
-  $DOMAIN_HASHES[d.url] = d.sat_bridge
-end
-
+# @domains.each do |d|
+#   $DOMAIN_HASHES[d.url] = d.sat_bridge
+# end
+#
 
 
 DOMAINHASH =  {"126.com"=>9999,
