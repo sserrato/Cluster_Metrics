@@ -20,3 +20,4 @@
 //= require highcharts/highstock
 //= require highcharts/modules/exporting
 //= require highcharts/modules/export-csv
+//= require highcharts/modules/dark-unica
