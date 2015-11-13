@@ -9,10 +9,16 @@ Highcharts.createElement('link', {
    rel: 'stylesheet',
    type: 'text/css'
 }, null, document.getElementsByTagName('head')[0]);
+//
+// colors: ["#ff69b4", "#f7a35c", "#90ee7e", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+//    "#55BF3B", "#DF5353", "#7798BF", "#aaeeee", ],
+// May = #C3FFFF want to change to #4A87CB
+// 7cb5ec to 4A87CB ar = -
 
+// bright pink zff69b4
 Highcharts.theme = {
-   colors: ["#7cb5ec", "#f7a35c", "#90ee7e", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
-      "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+  colors: ["#ff69b4", "#f7a35c", "#90ee7e", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+     "#55BF3B", "#DF5353", "#7798BF", "#aaeeee", ],
    chart: {
       backgroundColor: null,
       style: {
@@ -21,7 +27,7 @@ Highcharts.theme = {
    },
    title: {
       style: {
-         fontSize: '16px',
+         fontSize: '18px',
          fontWeight: 'bold',
          textTransform: 'uppercase'
       }

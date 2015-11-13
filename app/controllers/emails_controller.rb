@@ -56,6 +56,7 @@ class EmailsController < ApplicationController
   def intensity
     # year = 2014
     #2014 - Jan
+    #number_to_percentage(100, precision: 0)
     @b1_m1_y14_c3 = (Email.average_intensity_year_cluster(1,1,2014,3)).to_f
     @b2_m1_y14_c3 = (Email.average_intensity_year_cluster(2,1,2014,3)).to_f
     @b3_m1_y14_c3 = (Email.average_intensity_year_cluster(3,1,2014,3)).to_f
