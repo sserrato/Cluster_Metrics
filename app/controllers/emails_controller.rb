@@ -777,7 +777,7 @@ end #end def intensity 2013
 
   def import
   Email.import(params[:file])
-  redirect_to emails_classify_path, notice: "Emails imported."
+  redirect_to new_domain_path, notice: "Emails imported. Now you can classify the remaining domains."
   end
 
   def classify
@@ -836,6 +836,7 @@ end #end def intensity 2013
         @redirect_next_edit = Email.where("bridge = '0'").first
         #logic to ensure that when all email_domains are classified, user is told that all is done.
         if @redirect_next_edit == nil
+
           format.html { redirect_to ("/"), notice: 'All emails have been classified.' }
           format.json { render :show, status: :ok, location: ('/') }
         else
@@ -867,6 +868,10 @@ end #end def intensity 2013
     # Never trust parameters from the scary internet, only allow the white list through.
     def email_params
       params.require(:email).permit(:email_domain, :bridge, :bridge_global, :email_frequency, :month, :year, :cluster_id)
+    end
+
+    def domain_params
+      params.require(:domain).permit(:url, :sat_bridge, :clusters_id, :global_bridge)
     end
 
     def query_params

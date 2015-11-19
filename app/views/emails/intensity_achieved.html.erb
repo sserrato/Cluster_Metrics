@@ -6,7 +6,7 @@
   <li role="presentation"><%= link_to '2017', emails_intensity_achieved2016_path %></li>
   <li role="presentation"><%= link_to '2018', emails_intensity_achieved2016_path %></li>
 </ul>
-
+<%= Email::DOMAINS_HASH %>
 <%= high_chart("intensity_achieved", @intensity_achieved_chart2014) %>
 <!--
 <div class="panel panel-info">

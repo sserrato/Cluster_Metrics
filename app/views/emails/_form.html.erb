@@ -1,41 +1,48 @@
-<%= form_for(@email) do |f| %>
-  <% if @email.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@email.errors.count, "error") %> prohibited this email from being saved:</h2>
-
-      <ul>
-      <% @email.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :id %>:<%= @email.id %><br>
-  </div>
-  <div class="field">
-    <%= f.label :email_domain %>:<%= @email.email_domain %> | <a href="http://<%= @email.email_domain %>" target="_blank">View domain</a>    <br>
-
-  </div>
+<%= form_for(Domain.create) do |f| %>
 
   <div class="field">
-    <%= f.label "This domain was contacted" %>:<%= @email.email_frequency.to_s + " times"%><br>
-  </div>
-  <div class="field">
-    <%= f.label "time period" %>:<%= @email.month.to_s %> / <%=@email.year%><br>
-  </div>
-
-  <div class="field">
-    <%= f.label "cluster" %>: <%=@email.cluster.cluster_name%> <br>
+    <%= f.label :url %><br>
+    <%= f.text_field :url, :value =>@email.email_domain %>
   </div>
   <div class='btn-group btn-lg' data-toggle='buttons'>
-    <% Email::BRIDGEVALUE.each do |bv| %>
-      <label class='btn btn-primary'>
-          <%= f.radio_button(:bridge, bv.to_s, class:'btn-lg')%><%= Email::BRIDGENAMES[bv]%>
-      </label>
-    <% end %>
-</div>
+   <% Email::BRIDGEVALUE.each do |bv| %>
+     <label class='btn btn-primary'>
+         <%= f.radio_button(:sat_bridge, bv.to_s, class:'btn-lg')%><%= Email::BRIDGENAMES[bv]%>
+     </label>
+   <% end %>
+
+  <div class="field">
+    <%= f.label :cluster_id %><br>
+    <%= f.number_field :cluster_id, :value =>  session[:cluster_id] %>
+  </div>
+  <div class="field">
+    <%= f.label :global_bridge %><br>
+    <%= f.number_field :global_bridge %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<!--
+<%= form_tag domains_path, :method => :post do%>
+
+  <div class="field">
+    <%= label_tag(:url, Domain, :value=> @email.email_domain) %><br>
+    <%= text_field_tag( :url, @email.email_domain, ) %>
+  </div>
+  <div class="field">
+    <%= label_tag(:sat_bridge) %><br>
+    <%= number_field_tag( :sat_bridge) %>
+  </div>
+  <div class="field">
+    <%= label_tag(:cluster_id) %><br>
+    <%= text_field_tag( :cluster_id )%>
+  </div>
+  <div class="field">
+    <%= label_tag(:global_bridge) %><br>
+    <%= number_field_tag( :global_bridge) %>
+  </div>
+  <div class="actions">
+    <%= submit_tag("classify") %>
+  </div>
+  <% end %> -->

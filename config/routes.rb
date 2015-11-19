@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'emails/upload'
   get 'emails/classify'
   patch 'emails/classify'
+  post 'emails/edit'
   get 'emails/total'
   get 'emails/total2013'
   get 'emails/total2015'
@@ -43,6 +44,7 @@ Rails.application.routes.draw do
   get 'emails/intensity_achieved2017'
   get 'emails/intensity_achieved2018'
   post 'emails/analytics'
+  post 'domains' => 'emails#edit'
   root 'emails#classify'
 
   #route for import from CSV.
@@ -52,6 +54,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -3,6 +3,18 @@ class Email < ActiveRecord::Base
 
   belongs_to :cluster
   validates :email_domain, presence: true
+#global variable
+#hash for look up and persistence model.
+
+
+
+
+@domains = Domain.all
+DOMAINS_HASH = {}
+
+@domains.each do |d|
+  DOMAINS_HASH[d.url] = d.sat_bridge #creates a domains hash
+ end
 
 #constants
     DISTICTDOMAINSCOUNT = Email.select("email_domain").distinct.count
@@ -67,21 +79,14 @@ class Email < ActiveRecord::Base
       def self.import(file)
         CSV.foreach(file.path, headers: true) do |row|
           row.to_hash
-          row[:bridge] = DOMAINHASH.fetch((row.to_hash[:email_domain.to_s]),0)
+          row[:bridge] = DOMAINS_HASH.fetch((row.to_hash[:email_domain.to_s]),0)
           row[:cluster_id] = 3
           ##row[:email_domain] = (((row.to_hash)[:email_domain.to_s]) + "added")
           Email.create! row.to_hash
         end
       end
 
-#hash for look up and persistence model.
-# @domains = Domain.all
-# $DOMAIN_HASHES = {}
 
-# @domains.each do |d|
-#   $DOMAIN_HASHES[d.url] = d.sat_bridge
-# end
-#
 
 
 DOMAINHASH =  {"126.com"=>9999,
