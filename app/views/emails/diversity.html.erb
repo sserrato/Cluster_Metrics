@@ -6,5 +6,5 @@
   <li role="presentation"><%=link_to '2017', emails_diversity2017_path %></li>
   <li role="presentation"><%=link_to '2018', emails_diversity2018_path %></li>
 </ul>
-<%=$class_distinct_domain_count %>
-<%=high_chart("some_id", @diversity_2014) %>
+<%=Email::DOMAINS_HASH%>
+<%=high_chart("diversity_2014", @diversity_2014) %>
