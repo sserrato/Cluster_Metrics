@@ -51,7 +51,41 @@ class EmailsController < ApplicationController
     f.plot_options({:column=>{:stacking=>"normal"}})
   end
 
-  end # end def volume
+end # end def volume2014
+
+  def volume2015
+    #volume requires Bridge_ID, Year, Cluster ID
+    @bridge1_2015_volume = (Email.total_bridge_year_cluster(1,2015,3)).map
+    @bridge2_2015_volume = (Email.total_bridge_year_cluster(2,2015,3)).map
+    @bridge3_2015_volume = (Email.total_bridge_year_cluster(3,2015,3)).map
+    @bridge4_2015_volume = (Email.total_bridge_year_cluster(4,2015,3)).map
+    @bridge5_2015_volume = (Email.total_bridge_year_cluster(5,2015,3)).map
+    @bridge6_2015_volume = (Email.total_bridge_year_cluster(6,2015,3)).map
+    @bridge7_2015_volume = (Email.total_bridge_year_cluster(7,2015,3)).map
+
+
+    @volume_2015 = LazyHighCharts::HighChart.new('graph') do |f|
+    f.title(:text => "2014 Total bridge communication volume")
+    f.xAxis(:categories => Email::MONTHNAMESMODEL)
+    f.series(:name => "Capital", :yAxis => 0, :data => @bridge1_2015_volume)
+    f.series(:name => "Company", :yAxis => 0, :data => @bridge2_2015_volume)
+    f.series(:name => "Research", :yAxis => 0, :data => @bridge3_2015_volume)
+    f.series(:name => "Public Sector", :yAxis => 0, :data => @bridge4_2015_volume)
+    f.series(:name => "Cluster", :yAxis => 0, :data => @bridge5_2015_volume)
+    f.series(:name => "Global Market", :yAxis => 0, :data => @bridge6_2015_volume)
+    f.series(:name => "Education", :yAxis => 0, :data =>   @bridge7_2015_volume)
+
+    f.yAxis [
+      {:title => {:text => "", :margin => 0} },
+      {:title => {:text => "Contacts per month"}, :opposite => true},
+    ]
+
+    f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+    f.chart({:defaultSeriesType=>"column"})
+    f.plot_options({:column=>{:stacking=>"normal"}})
+  end
+
+  end # end def volume2015
 
   def intensity
     # year = 2014
@@ -714,6 +748,116 @@ end #end def intensity 2013
     @all_domains_t2 = Email.select("email_domain, bridge").distinct.where("bridge <> '9999' AND bridge <> '9998' AND email_frequency >='4'")
   end# end diversity
 
+
+    def diversity2015
+      @jan_diversity_2015 = []
+      @feb_diversity_2015 = []
+      @mar_diversity_2015 = []
+      @apr_diversity_2015 = []
+      @may_diversity_2015 = []
+      @jun_diversity_2015 = []
+      @jul_diversity_2015 = []
+      @aug_diversity_2015 = []
+      @sep_diversity_2015 = []
+      @oct_diversity_2015 = []
+      @nov_diversity_2015 = []
+      @dec_diversity_2015 = []
+      # unique domains contacted within a month
+
+      @jan_distinct_2015 = Email.diversity_metric(1,2015,3).values
+      @feb_distinct_2015 = Email.diversity_metric(2,2015,3).values
+      @mar_distinct_2015 = Email.diversity_metric(3,2015,3).values
+      @apr_distinct_2015 = Email.diversity_metric(4,2015,3).values
+      @may_distinct_2015 = Email.diversity_metric(5,2015,3).values
+      @jun_distinct_2015 = Email.diversity_metric(6,2015,3).values
+      @jul_distinct_2015 = Email.diversity_metric(7,2015,3).values
+      @aug_distinct_2015 = Email.diversity_metric(8,2015,3).values
+      @sep_distinct_2015 = Email.diversity_metric(9,2015,3).values
+      @oct_distinct_2015 = Email.diversity_metric(10,2015,3).values
+      @nov_distinct_2015 = Email.diversity_metric(11,2015,3).values
+      @dec_distinct_2015 = Email.diversity_metric(12,2015,3).values
+
+      #diversity metrics
+      @diversity_goals = Goal.diversity_goals(3)
+
+      #processing the time period results
+      @jan_distinct_2015.each_with_index do |d, i|
+            @jan_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @feb_distinct_2015.each_with_index do |d, i|
+            @feb_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @mar_distinct_2015.each_with_index do |d, i|
+            @mar_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @apr_distinct_2015.each_with_index do |d, i|
+            @apr_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @may_distinct_2015.each_with_index do |d, i|
+            @may_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @jun_distinct_2015.each_with_index do |d, i|
+            @jun_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @jul_distinct_2015.each_with_index do |d, i|
+            @jul_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @aug_distinct_2015.each_with_index do |d, i|
+            @aug_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @sep_distinct_2015.each_with_index do |d, i|
+            @sep_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @oct_distinct_2015.each_with_index do |d, i|
+            @oct_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @nov_distinct_2015.each_with_index do |d, i|
+            @nov_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @dec_distinct_2015.each_with_index do |d, i|
+            @dec_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      end
+
+      @diversity_2015 = LazyHighCharts::HighChart.new('graph') do |f|
+        f.title(:text => "2015 Contact Gap - Actual vs Goal Unique Contacts")
+        f.xAxis(:categories =>  ["Capital", "Company", "Research", "Public Sector", "Cluster", "Global Market", "Education"])
+        f.series(:name => "January", :yAxis => 1, :data => @jan_diversity_2015 )
+        f.series(:name => "February", :yAxis => 1, :data => @feb_diversity_2015)
+        f.series(:name => "March", :yAxis => 1, :data => @mar_diversity_2015)
+        f.series(:name => "April", :yAxis => 1, :data => @apr_diversity_2015)
+        f.series(:name => "May", :yAxis => 1, :data => @may_diversity_2015)
+        f.series(:name => "June", :yAxis => 1, :data => @jun_diversity_2015)
+        f.series(:name => "July", :yAxis => 1, :data => @jul_diversity_2015)
+        f.series(:name => "August", :yAxis => 1, :data => @aug_diversity_2015)
+        f.series(:name => "September", :yAxis => 1, :data => @sep_diversity_2015)
+        f.series(:name => "October", :yAxis => 1, :data => @oct_diversity_2015)
+        f.series(:name => "November", :yAxis => 1, :data => @nov_diversity_2015)
+        f.series(:name => "December", :yAxis => 1, :data => @dec_diversity_2015)
+
+        f.yAxis [
+          {:title => {:text => "", :margin => 0} },
+          {:title => {:text => "% achieved"}, :opposite => true},
+        ]
+        #f.options[:tooltip][:formatter] = "function(){ return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %'; }"
+
+        f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+        f.chart({:defaultSeriesType=>"column"})
+      end
+
+
+    end# end diversity2015
+
   def total
       @total_Jan_2014 =  (Email.total_contact_month_year_cluster(1,2014,3)).map
       @total_Feb_2014 =  (Email.total_contact_month_year_cluster(2,2014,3)).map
@@ -758,6 +902,50 @@ end #end def intensity 2013
             f.series(:name => "October", :yAxis => 1, :data => @total_Oct_2014)
             f.series(:name => "November", :yAxis => 1, :data => @total_Nov_2014)
             f.series(:name => "December", :yAxis => 1, :data => @total_Dec_2014)
+
+            f.yAxis [
+              {:title => {:text => "", :margin => 0} },
+              {:title => {:text => ""}, :opposite => true},
+            ]
+
+            f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+            f.chart({:defaultSeriesType=>"column"})
+          end
+
+  #below ends the def total
+  end
+
+  def total2015
+      @total_Jan_2015 =  (Email.total_contact_month_year_cluster(1,2015,3)).map
+      @total_Feb_2015 =  (Email.total_contact_month_year_cluster(2,2015,3)).map
+      @total_Mar_2015 =  (Email.total_contact_month_year_cluster(3,2015,3)).map
+      @total_Apr_2015 =  (Email.total_contact_month_year_cluster(4,2015,3)).map
+      @total_May_2015 =  (Email.total_contact_month_year_cluster(5,2015,3)).map
+      @total_Jun_2015 =  (Email.total_contact_month_year_cluster(6,2015,3)).map
+      @total_Jul_2015 =  (Email.total_contact_month_year_cluster(7,2015,3)).map
+      @total_Aug_2015 =  (Email.total_contact_month_year_cluster(8,2015,3)).map
+      @total_Sep_2015 =  (Email.total_contact_month_year_cluster(9,2015,3)).map
+      @total_Oct_2015 =  (Email.total_contact_month_year_cluster(10,2015,3)).map
+      @total_Nov_2015 =  (Email.total_contact_month_year_cluster(11,2015,3)).map
+      @total_Dec_2015 =  (Email.total_contact_month_year_cluster(12,2015,3)).map
+
+
+      #chart for monthly contacts grouped by bridge
+          @total_contact2015 = LazyHighCharts::HighChart.new('graph') do |f|
+            f.title(:text => "2015: Contact per month by bridge")
+            f.xAxis(:categories =>  Email::BRIDGENAMES)
+            f.series(:name => "January", :yAxis => 1, :data =>  @total_Jan_2015)
+            f.series(:name => "February", :yAxis => 1, :data => @total_Feb_2015)
+            f.series(:name => "March", :yAxis => 1, :data => @total_Mar_2015)
+            f.series(:name => "April", :yAxis => 1, :data => @total_Apr_2015)
+            f.series(:name => "May", :yAxis => 1, :data => @total_May_2015)
+            f.series(:name => "June", :yAxis => 1, :data => @total_Jun_2015)
+            f.series(:name => "July", :yAxis => 1, :data => @total_Jul_2015)
+            f.series(:name => "August", :yAxis => 1, :data => @total_Aug_2015)
+            f.series(:name => "September", :yAxis => 1, :data => @total_Sep_2015)
+            f.series(:name => "October", :yAxis => 1, :data => @total_Oct_2015)
+            f.series(:name => "November", :yAxis => 1, :data => @total_Nov_2015)
+            f.series(:name => "December", :yAxis => 1, :data => @total_Dec_2015)
 
             f.yAxis [
               {:title => {:text => "", :margin => 0} },
