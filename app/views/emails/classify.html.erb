@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Domain classification</h1>
   <p>
-    <strong>Data composition:</strong> All records in this table need to be classified to a bridge. The data displayed here is currently excluding any records with <mark> less than four contacts</mark> during the month period.
+    <strong>Data composition:</strong> All records in this table need to be classified to a bridge. The <strong><%= @uniq_domains_count  %></strong> domains displayed here exclude any records with <mark> less than <%= Email::MINCONTACT %> contacts</mark> during the month period.
     To begin classiying, click <button type="button" class="btn btn-default btn-lg">
   <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <%=link_to 'here', new_domain_path %>
 </button>.
@@ -17,22 +17,12 @@
     <thead>
       <tr>
         <th>Email Domain</th>
-        <th>Bridge</th>
-        <th>Frequency</th>
-        <th>Cluster</th>
-        <th>Month</th>
-        <th>Year</th>
+
       </tr>
       <tbody>
-        <% @emails_bridge0.each do |eb| %>
+        <% @uniq_domains.each do |eb| %>
             <tr>
-
               <td><%= eb.email_domain %></td>
-              <td><%=eb.bridge%></td>
-              <td><%=eb.email_frequency%></td>
-              <td><%=eb.cluster_id%></td>
-              <td><%=eb.month%></td>
-              <td><%=eb.year%></td>
             <% end %>
             </tr>
       </tbody>

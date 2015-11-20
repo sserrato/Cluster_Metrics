@@ -1094,12 +1094,14 @@ end #end def intensity 2013
   end
 
   def classify
-    @emails_bridge0 = Email.where("bridge = '0' AND email_frequency >='4'").order("id DESC")
+    @uniq_domains = Email.select("email_domain").where("bridge = '0' AND email_frequency >= '4'").order("email_domain ASC").uniq
+    @uniq_domains_count = Email.select("email_domain").where("bridge = '0' AND email_frequency >= '4'").uniq.count
+
     respond_to do |format|
       format.html
-      format.csv {send_data @emails_bridge0.to_csv}
-      format.xls {send_data @emails_bridge0.to_csv(col_sep: "\t")}
-      format.json {send_data @emails_bridge0.to_json}
+      format.csv {send_data @uniq_domains.to_csv}
+      format.xls {send_data @uniq_domains.to_csv(col_sep: "\t")}
+      format.json {send_data @uniq_domains.to_json}
     end
   end
 
