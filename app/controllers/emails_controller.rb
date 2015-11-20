@@ -1094,8 +1094,8 @@ end #end def intensity 2013
   end
 
   def classify
-    @uniq_domains = Email.select("email_domain").where("bridge = '0' AND email_frequency >= '4'").order("email_domain ASC").uniq
-    @uniq_domains_count = Email.select("email_domain").where("bridge = '0' AND email_frequency >= '4'").uniq.count
+    @uniq_domains = Email.select("email_domain").where("bridge = '0' AND email_frequency >= ?", Email::MINCONTACT).order("email_domain ASC").uniq
+    @uniq_domains_count = Email.select("email_domain").where("bridge = '0' AND email_frequency >= ?", Email::MINCONTACT).uniq.count
 
     respond_to do |format|
       format.html
