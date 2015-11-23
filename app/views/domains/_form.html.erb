@@ -49,6 +49,9 @@
     <label class='btn btn-primary'>
       <%= f.radio_button(:sat_bridge, Email::BRIDGEVALUE[8], class:'btn-lg')%><%= Email::BRIDGENAMES[8]%>
     </label>
+    <label class='btn btn-primary'>
+      <%= f.radio_button(:sat_bridge, Email::BRIDGEVALUE[9], class:'btn-lg')%><%= Email::BRIDGENAMES[9]%>
+    </label>
 </div>
   <div class="field">
     <%= f.hidden_field :cluster_id, :value =>3 %>
@@ -58,6 +61,6 @@
     <%#= f.number_field :global_bridge %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Classify domain"%>
   </div>
   <%end%>

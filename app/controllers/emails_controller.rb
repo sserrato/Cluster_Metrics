@@ -863,15 +863,7 @@ end #end def intensity 2013
 
     #hstore prototypes
     @distinct_domain_count = Email.select("email_domain").distinct.count
-    @test22 = Email.where("month ='1' AND year = '2014' AND cluster_id = '3' AND bridge <> '0' AND bridge <> '9999' AND bridge <> '9998'").select("email_domain").group("bridge").order("bridge").distinct.count
-    @test11 = Email.where("month ='1'").select("email_domain").group("bridge").distinct.count
-    @domains_hash = Email.where("month ='1'").select("email_domain").group("email_domain").distinct.count
-
-    @all_domains_hash = Email.select("email_domain").group("email_domain").order("email_domain").distinct.count
-    @all_domains_hash_object = Email.select("email_domain, bridge").distinct.where("bridge <> '9999' AND bridge <> '9998' AND email_frequency >='4'").order('bridge ASC')
-    @all_domains_hash_name = Email.select("email_domain, bridge").distinct.where("bridge <> '9999' AND bridge <> '9998' AND email_frequency >='4'").order('bridge ASC')
-    @all_domains_t2 = Email.select("email_domain, bridge").distinct.where("bridge <> '9999' AND bridge <> '9998' AND email_frequency >='4'")
-  end# end diversity
+    end# end diversity
 
 
     def diversity2015
