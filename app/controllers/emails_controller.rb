@@ -189,7 +189,7 @@ end # end def volume2014
 
     #chart for intensity
     @average_intensity_chart2014 = LazyHighCharts::HighChart.new('graph') do |f|
-    f.title(:text => "2014: Average intensity of communication per bridge")
+    f.title(:text => "Average intensity of communication per bridge")
     f.xAxis(:categories =>  ["Capital", "Company", "Research", "Public Sector", "Cluster", "Global Market", "Education"])
     f.series(:name => "January", :yAxis => 1, :data => [@b1_m1_y14_c3, @b2_m1_y14_c3, @b3_m1_y14_c3, @b4_m1_y14_c3, @b5_m1_y14_c3, @b6_m1_y14_c3, @b7_m1_y14_c3])
     f.series(:name => "February", :yAxis => 1, :data => [@b1_m2_y14_c3, @b2_m2_y14_c3, @b3_m2_y14_c3, @b4_m2_y14_c3, @b5_m2_y14_c3, @b6_m2_y14_c3, @b7_m2_y14_c3])
@@ -314,7 +314,7 @@ end # end def volume2014
 
     #chart for intensity
     @average_intensity_chart2015 = LazyHighCharts::HighChart.new('graph') do |f|
-    f.title(:text => "2015: Average intensity of communication per bridge")
+    f.title(:text => "Average intensity of communication per bridge")
     f.xAxis(:categories =>  ["Capital", "Company", "Research", "Public Sector", "Cluster", "Global Market", "Education"])
     f.series(:name => "January", :yAxis => 1, :data => [@b1_m1_y2015_c3, @b2_m1_y2015_c3, @b3_m1_y2015_c3, @b4_m1_y2015_c3, @b5_m1_y2015_c3, @b6_m1_y2015_c3, @b7_m1_y2015_c3])
     f.series(:name => "February", :yAxis => 1, :data => [@b1_m2_y2015_c3, @b2_m2_y2015_c3, @b3_m2_y2015_c3, @b4_m2_y2015_c3, @b5_m2_y2015_c3, @b6_m2_y2015_c3, @b7_m2_y2015_c3])
@@ -445,7 +445,7 @@ end #end def intensity 2015
     @intensity_goals = Goal.intensity_goals(3)
 
     @intensity_achieved_chart2014 = LazyHighCharts::HighChart.new('graph') do |f|
-    f.title(:text => "2014: Average intensity of communication per bridge")
+    f.title(:text => "Average intensity of communication per bridge")
     f.xAxis(:categories =>  ["Capital", "Company", "Research", "Public Sector", "Cluster", "Global Market", "Education"])
     f.series(:name => "January", :yAxis => 1, :data => [@b1_m1_y14_c3, @b2_m1_y14_c3, @b3_m1_y14_c3, @b4_m1_y14_c3, @b5_m1_y14_c3, @b6_m1_y14_c3, @b7_m1_y14_c3])
     f.series(:name => "February", :yAxis => 1, :data => [@b1_m2_y14_c3, @b2_m2_y14_c3, @b3_m2_y14_c3, @b4_m2_y14_c3, @b5_m2_y14_c3, @b6_m2_y14_c3, @b7_m2_y14_c3])
@@ -601,8 +601,7 @@ end #end def intensity 2013
 
   def metrics
     #bridge, month for average intensity
-    @year = 2014 || params[:year]
-    @cluster = 3
+
     @testb1m1year_cluster = (Email.average_intensity_year_cluster(1,1,@year, @cluster)).to_i
     #jan
     @b1_m1 = (Email.average_intensity(1,1)).to_f
@@ -835,7 +834,7 @@ end #end def intensity 2013
     end
 
     @diversity_2014 = LazyHighCharts::HighChart.new('graph') do |f|
-      f.title(:text => "2014 Contact Gap - Actual vs Goal Unique Contacts")
+      f.title(:text => "Contact Gap - Actual vs Goal Unique Contacts")
       f.xAxis(:categories =>  ["Capital", "Company", "Research", "Public Sector", "Cluster", "Global Market", "Education"])
       f.series(:name => "January", :yAxis => 1, :data => @jan_diversity )
       f.series(:name => "February", :yAxis => 1, :data => @feb_diversity)
@@ -947,7 +946,7 @@ end #end def intensity 2013
       end
 
       @diversity_2015 = LazyHighCharts::HighChart.new('graph') do |f|
-        f.title(:text => "2015 Contact Gap - Actual vs Goal Unique Contacts")
+        f.title(:text => "Contact Gap - Actual vs Goal Unique Contacts")
         f.xAxis(:categories =>  ["Capital", "Company", "Research", "Public Sector", "Cluster", "Global Market", "Education"])
         f.series(:name => "January", :yAxis => 1, :data => @jan_diversity_2015 )
         f.series(:name => "February", :yAxis => 1, :data => @feb_diversity_2015)
@@ -1005,20 +1004,20 @@ end #end def intensity 2013
 
       #chart for monthly contacts grouped by bridge
           @total_contact2014 = LazyHighCharts::HighChart.new('graph') do |f|
-            f.title(:text => "2014: Contact per month by bridge")
-            f.xAxis(:categories =>  Email::BRIDGENAMES)
-            f.series(:name => "January", :yAxis => 1, :data =>  @total_Jan_2014)
-            f.series(:name => "February", :yAxis => 1, :data => @total_Feb_2014)
-            f.series(:name => "March", :yAxis => 1, :data => @total_Mar_2014)
-            f.series(:name => "April", :yAxis => 1, :data => @total_Apr_2014)
-            f.series(:name => "May", :yAxis => 1, :data => @total_May_2014)
-            f.series(:name => "June", :yAxis => 1, :data => @total_Jun_2014)
-            f.series(:name => "July", :yAxis => 1, :data => @total_Jul_2014)
-            f.series(:name => "August", :yAxis => 1, :data => @total_Aug_2014)
-            f.series(:name => "September", :yAxis => 1, :data => @total_Sep_2014)
-            f.series(:name => "October", :yAxis => 1, :data => @total_Oct_2014)
-            f.series(:name => "November", :yAxis => 1, :data => @total_Nov_2014)
-            f.series(:name => "December", :yAxis => 1, :data => @total_Dec_2014)
+            f.title(:text => "Contact per month by bridge")
+            f.xAxis(:categories =>  'This')#Email::BRIDGE_NAMES_CHART)
+            f.series(:name => "January", :yAxis => 1, :data => @month_contacts_Jan.map )#@total_Jan_2014)
+            #f.series(:name => "February", :yAxis => 1, :data => @total_Feb_2014)
+            #f.series(:name => "March", :yAxis => 1, :data => @total_Mar_2014)
+            #f.series(:name => "April", :yAxis => 1, :data => @total_Apr_2014)
+            #f.series(:name => "May", :yAxis => 1, :data => @total_May_2014)
+            #f.series(:name => "June", :yAxis => 1, :data => @total_Jun_2014)
+            #f.series(:name => "July", :yAxis => 1, :data => @total_Jul_2014)
+            #f.series(:name => "August", :yAxis => 1, :data => @total_Aug_2014)
+            #f.series(:name => "September", :yAxis => 1, :data => @total_Sep_2014)
+            #f.series(:name => "October", :yAxis => 1, :data => @total_Oct_2014)
+            #f.series(:name => "November", :yAxis => 1, :data => @total_Nov_2014)
+            #f.series(:name => "December", :yAxis => 1, :data => @total_Dec_2014)
 
             f.yAxis [
               {:title => {:text => "", :margin => 0} },
@@ -1049,7 +1048,7 @@ end #end def intensity 2013
 
       #chart for monthly contacts grouped by bridge
           @total_contact2015 = LazyHighCharts::HighChart.new('graph') do |f|
-            f.title(:text => "2015: Contact per month by bridge")
+            f.title(:text => "Contact per month by bridge")
             f.xAxis(:categories =>  Email::BRIDGENAMES)
             f.series(:name => "January", :yAxis => 1, :data =>  @total_Jan_2015)
             f.series(:name => "February", :yAxis => 1, :data => @total_Feb_2015)

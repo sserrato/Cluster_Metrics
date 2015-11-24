@@ -1,6 +1,5 @@
 class Email < ActiveRecord::Base
   require 'csv'
-
   belongs_to :cluster
   validates :email_domain, presence: true
 #global variable
@@ -9,19 +8,24 @@ class Email < ActiveRecord::Base
 
 
 
-@domains = Domain.all
-DOMAINS_HASH = {}
+  @domains = Domain.all
+  DOMAINS_HASH = {}
 
-@domains.each do |d|
-  DOMAINS_HASH[d.url] = d.sat_bridge #creates a domains hash
- end
 
+  @domains.each do |d|
+    DOMAINS_HASH[d.url] = d.sat_bridge #creates a domains hash
+   end
+
+  @total_Jan_2014 =  (Email.total_contact_month_year_cluster(1,2014,3)).map
+
+  Email.where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
 #constants
     DISTICTDOMAINSCOUNT = Email.select("email_domain").distinct.count
     DISTICTDOMAINSBRIDGE = Email.select("email_domain, bridge").distinct.order('bridge ASC')
     DISTINCTBRIDGECOUNT = Email.select("bridge").distinct.count
     DISTINCTEMAIL = Email.count
     BRIDGENAMES = ['Not Yet Classified','Capital','Company','Research','Public Sector', 'Cluster','Global Market','Education','Junk', 'Park']
+    BRIDGE_NAMES_CHART = ['Capital','Company','Research','Public Sector', 'Cluster','Global Market','Education']
     BRIDGEVALUE = [0, 1, 2,3,4,5,6,7,8,9]
     MINCONTACT = 4
     MONTHNAMESMODEL = ["0","Jan","Feb","Mar", "Apr", "May", "Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
@@ -33,7 +37,7 @@ DOMAINS_HASH = {}
 #scope :by_month, -> (month){ where("'month' = ?", month) }
 
       #bridge filter removes non-essential bridges (junk, misc and non-categorized from the charting queries)
-      scope :bridge_filter, lambda{ where("bridge <> '9' AND bridge <> 8 AND bridge <> '0'")}
+      scope :bridge_filter, lambda{ where("bridge <> '9' AND bridge <> '8' AND bridge <> '0'")}
       # groups by month, orders by month, summing email frequency.
       scope :gr_month_or_month_su_frequency, lambda{ group('month').order('month ASC').sum('email_frequency')}
       #groups and orders by bridge bridge the total frequency
@@ -62,7 +66,6 @@ DOMAINS_HASH = {}
       #Average intensity by month, barchart for each month
       scope :average_intensity_year_cluster, ->(bridge_value, month_value, year_value, cluster_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).average("email_frequency")}
       scope :sum_intensity_year_cluster, ->(bridge_value, month_value, year_value, cluster_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).sum("email_frequency")}
-
       scope :average_intensity, ->(bridge_value, month_value){ where("bridge ='?'", bridge_value).where("month ='?'", month_value).average("email_frequency")}
       # groups by month and orders by month the sum of freqencies.
 

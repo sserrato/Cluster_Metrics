@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  resources :domains
+  resources :domains, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :goals
   resources :users, only: [:index, :new, :create, :edit, :update, :show]
   resources :sessions, :only => [:new, :create, :destroy]
   resources :emails, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :clusters
   post 'emails/import'
+  get 'domains/parked'
   get 'emails/upload'
   get 'emails/classify'
   patch 'emails/classify'

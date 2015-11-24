@@ -1,5 +1,5 @@
 class DomainsController < ApplicationController
-  before_action :set_domain, only: [:show, :edit, :update, :destroy]
+  #before_action :set_domain, except: [:show, :edit, :update, :destroy]
 
   # GET /domains
   # GET /domains.json
@@ -10,6 +10,7 @@ class DomainsController < ApplicationController
   # GET /domains/1
   # GET /domains/1.json
   def show
+    @domain = Domain.find(params[:id])
   end
 
   # GET /domains/new
@@ -48,6 +49,10 @@ class DomainsController < ApplicationController
       end
     end
   end
+
+  def parked
+    @parked = Domain.where("sat_bridge = '9'")
+  end #parked
 
   # PATCH/PUT /domains/1
   # PATCH/PUT /domains/1.json
