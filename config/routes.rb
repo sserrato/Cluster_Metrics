@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'emails#classify'
   resources :domains, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :goals
   resources :users, only: [:index, :new, :create, :edit, :update, :show]
@@ -9,7 +10,6 @@ Rails.application.routes.draw do
   get 'domains/parked'
   get 'emails/upload'
   get 'emails/classify'
-  patch 'emails/classify'
   post 'emails/edit'
   get 'emails/total'
   get 'emails/total2013'
@@ -45,8 +45,8 @@ Rails.application.routes.draw do
   get 'emails/intensity_achieved2017'
   get 'emails/intensity_achieved2018'
   post 'emails/analytics'
-  post 'domains' => 'emails#edit'
-  root 'emails#classify'
+  #post 'domains' => 'emails#edit'
+
 
   #route for import from CSV.
 

@@ -16,9 +16,9 @@ class Email < ActiveRecord::Base
     DOMAINS_HASH[d.url] = d.sat_bridge #creates a domains hash
    end
 
-  @total_Jan_2014 =  (Email.total_contact_month_year_cluster(1,2014,3)).map
+  #@total_Jan_2014 =  (Email.total_contact_month_year_cluster(1,2014,3)).map
 
-  Email.where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
+  #Email.where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
 #constants
     DISTICTDOMAINSCOUNT = Email.select("email_domain").distinct.count
     DISTICTDOMAINSBRIDGE = Email.select("email_domain, bridge").distinct.order('bridge ASC')
@@ -53,7 +53,7 @@ class Email < ActiveRecord::Base
 
   #scopes with cluster and year
       #total contact by month, bar chart
-      scope :total_contact_month_year_cluster, ->(month_value, year_value, cluster_value){ where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency}
+      scope :total_contact_month_year_cluster , ->(month_value, year_value, cluster_value){ where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency}
 
       #Total Volume by month, bridge volume stacked chart
       scope :total_bridge_year_cluster, ->(bridge_value, year_value, cluster_value){ where("bridge = '?'", bridge_value).where("year ='?'", year_value).where("cluster_id ='?'", cluster_value).where("email_frequency >='?'", Email::MINCONTACT).group('month').order('month ASC').sum('email_frequency')}

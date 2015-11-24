@@ -12,8 +12,6 @@ class EmailsController < ApplicationController
   end
 
   def analytics
-      year_set = params(:year) ||  3314
-      redirect_to emails_metrics_path, notice: "reset year"
   end #end def analytics
 
   def volume
@@ -31,7 +29,7 @@ class EmailsController < ApplicationController
 
     @email2 = Email.stacked_bar(3, 2014, 3)
     @volume2014 = LazyHighCharts::HighChart.new('graph') do |f|
-    f.title(:text => "2014 Total bridge communication volume")
+    f.title(:text => "Total bridge communication volume")
     f.xAxis(:categories => Email::MONTHNAMESMODEL)
     f.series(:name => "Capital", :yAxis => 0, :data => @bridge1_2014_volume)
     f.series(:name => "Company", :yAxis => 0, :data => @bridge2_2014_volume)
@@ -65,7 +63,7 @@ end # end def volume2014
 
 
     @volume_2015 = LazyHighCharts::HighChart.new('graph') do |f|
-    f.title(:text => "2014 Total bridge communication volume")
+    f.title(:text => "Total bridge communication volume")
     f.xAxis(:categories => Email::MONTHNAMESMODEL)
     f.series(:name => "Capital", :yAxis => 0, :data => @bridge1_2015_volume)
     f.series(:name => "Company", :yAxis => 0, :data => @bridge2_2015_volume)
@@ -975,49 +973,35 @@ end #end def intensity 2013
     end# end diversity2015
 
   def total
-      @total_Jan_2014 =  (Email.total_contact_month_year_cluster(1,2014,3)).map
-      @total_Feb_2014 =  (Email.total_contact_month_year_cluster(2,2014,3)).map
-      @total_Mar_2014 =  (Email.total_contact_month_year_cluster(3,2014,3)).map
-      @total_Apr_2014 =  (Email.total_contact_month_year_cluster(4,2014,3)).map
-      @total_May_2014 =  (Email.total_contact_month_year_cluster(5,2014,3)).map
-      @total_Jun_2014 =  (Email.total_contact_month_year_cluster(6,2014,3)).map
-      @total_Jul_2014 =  (Email.total_contact_month_year_cluster(7,2014,3)).map
-      @total_Aug_2014 =  (Email.total_contact_month_year_cluster(8,2014,3)).map
-      @total_Sep_2014 =  (Email.total_contact_month_year_cluster(9,2014,3)).map
-      @total_Oct_2014 =  (Email.total_contact_month_year_cluster(10,2014,3)).map
-      @total_Nov_2014 =  (Email.total_contact_month_year_cluster(11,2014,3)).map
-      @total_Dec_2014 =  (Email.total_contact_month_year_cluster(12,2014,3)).map
+    @total_Jan_2014 =  (Email.total_contact_month_year_cluster(1,2014,3)).map
+    @total_Feb_2014 =  (Email.total_contact_month_year_cluster(2,2014,3)).map
+    @total_Mar_2014 =  (Email.total_contact_month_year_cluster(3,2014,3)).map
+    @total_Apr_2014 =  (Email.total_contact_month_year_cluster(4,2014,3)).map
+    @total_May_2014 =  (Email.total_contact_month_year_cluster(5,2014,3)).map
+    @total_Jun_2014 =  (Email.total_contact_month_year_cluster(6,2014,3)).map
+    @total_Jul_2014 =  (Email.total_contact_month_year_cluster(7,2014,3)).map
+    @total_Aug_2014 =  (Email.total_contact_month_year_cluster(8,2014,3)).map
+    @total_Sep_2014 =  (Email.total_contact_month_year_cluster(9,2014,3)).map
+    @total_Oct_2014 =  (Email.total_contact_month_year_cluster(10,2014,3)).map
+    @total_Nov_2014 =  (Email.total_contact_month_year_cluster(11,2014,3)).map
+    @total_Dec_2014 =  (Email.total_contact_month_year_cluster(12,2014,3)).map
 
-        #older long form vars
-      @month_contacts_Jan = Email.where("month = '1'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-      @month_contacts_Feb = Email.where("month = '2'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-      @month_contacts_Mar = Email.where("month = '3'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-      @month_contacts_Apr = Email.where("month = '4'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-      @month_contacts_May = Email.where("month = '5'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-      @month_contacts_Jun = Email.where("month = '6'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-      @month_contacts_Jul = Email.where("month = '7'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-      @month_contacts_Aug = Email.where("month = '8'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-      @month_contacts_Sep = Email.where("month = '9'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-      @month_contacts_Oct = Email.where("month = '10'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-      @month_contacts_Nov = Email.where("month = '11'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-      @month_contacts_Dec = Email.where("month = '12'").bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
-
-      #chart for monthly contacts grouped by bridge
+    #chart for monthly contacts grouped by bridge
           @total_contact2014 = LazyHighCharts::HighChart.new('graph') do |f|
-            f.title(:text => "Contact per month by bridge")
-            f.xAxis(:categories =>  'This')#Email::BRIDGE_NAMES_CHART)
-            f.series(:name => "January", :yAxis => 1, :data => @month_contacts_Jan.map )#@total_Jan_2014)
-            #f.series(:name => "February", :yAxis => 1, :data => @total_Feb_2014)
-            #f.series(:name => "March", :yAxis => 1, :data => @total_Mar_2014)
-            #f.series(:name => "April", :yAxis => 1, :data => @total_Apr_2014)
-            #f.series(:name => "May", :yAxis => 1, :data => @total_May_2014)
-            #f.series(:name => "June", :yAxis => 1, :data => @total_Jun_2014)
-            #f.series(:name => "July", :yAxis => 1, :data => @total_Jul_2014)
-            #f.series(:name => "August", :yAxis => 1, :data => @total_Aug_2014)
-            #f.series(:name => "September", :yAxis => 1, :data => @total_Sep_2014)
-            #f.series(:name => "October", :yAxis => 1, :data => @total_Oct_2014)
-            #f.series(:name => "November", :yAxis => 1, :data => @total_Nov_2014)
-            #f.series(:name => "December", :yAxis => 1, :data => @total_Dec_2014)
+            f.title(:text => "2014: Contact per month by bridge")
+            f.xAxis(:categories =>  Email::BRIDGENAMES)
+            f.series(:name => "January", :yAxis => 1, :data =>  @total_Jan_2014)
+            f.series(:name => "February", :yAxis => 1, :data => @total_Feb_2014)
+            f.series(:name => "March", :yAxis => 1, :data => @total_Mar_2014)
+            f.series(:name => "April", :yAxis => 1, :data => @total_Apr_2014)
+            f.series(:name => "May", :yAxis => 1, :data => @total_May_2014)
+            f.series(:name => "June", :yAxis => 1, :data => @total_Jun_2014)
+            f.series(:name => "July", :yAxis => 1, :data => @total_Jul_2014)
+            f.series(:name => "August", :yAxis => 1, :data => @total_Aug_2014)
+            f.series(:name => "September", :yAxis => 1, :data => @total_Sep_2014)
+            f.series(:name => "October", :yAxis => 1, :data => @total_Oct_2014)
+            f.series(:name => "November", :yAxis => 1, :data => @total_Nov_2014)
+            f.series(:name => "December", :yAxis => 1, :data => @total_Dec_2014)
 
             f.yAxis [
               {:title => {:text => "", :margin => 0} },
@@ -1027,6 +1011,7 @@ end #end def intensity 2013
             f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
             f.chart({:defaultSeriesType=>"column"})
           end
+
 
   #below ends the def total
   end
