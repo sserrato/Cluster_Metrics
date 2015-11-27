@@ -1,7 +1,6 @@
 class EmailsController < ApplicationController
   before_action :admin_only, except: [:index, :classify, :upload, :import]
   helper_method :analytics, :year_helper
-  $class_distinct_domain_count = Email.select("email_domain").distinct.count
 
   def year_helper
     @year_helper = 2000
@@ -988,7 +987,7 @@ end #end def intensity 2013
 
     #chart for monthly contacts grouped by bridge
           @total_contact2014 = LazyHighCharts::HighChart.new('graph') do |f|
-            f.title(:text => "2014: Contact per month by bridge")
+            f.title(:text => "Contact per month by bridge")
             f.xAxis(:categories =>  Email::BRIDGENAMES)
             f.series(:name => "January", :yAxis => 1, :data =>  @total_Jan_2014)
             f.series(:name => "February", :yAxis => 1, :data => @total_Feb_2014)

@@ -2,22 +2,15 @@ class Email < ActiveRecord::Base
   require 'csv'
   belongs_to :cluster
   validates :email_domain, presence: true
-#global variable
+
 #hash for look up and persistence model.
-
-
-
-
   @domains = Domain.all
   DOMAINS_HASH = {}
-
 
   @domains.each do |d|
     DOMAINS_HASH[d.url] = d.sat_bridge #creates a domains hash
    end
-
   #@total_Jan_2014 =  (Email.total_contact_month_year_cluster(1,2014,3)).map
-
   #Email.where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
 #constants
     DISTICTDOMAINSCOUNT = Email.select("email_domain").distinct.count
@@ -37,7 +30,7 @@ class Email < ActiveRecord::Base
 #scope :by_month, -> (month){ where("'month' = ?", month) }
 
       #bridge filter removes non-essential bridges (junk, misc and non-categorized from the charting queries)
-      scope :bridge_filter, lambda{ where("bridge <> '9' AND bridge <> '8' AND bridge <> '0'")}
+      scope :bridge_filter, lambda{ where("bridge <> '9' OR bridge <> '8' OR bridge <> '0' OR bridge <>'9998'")}
       # groups by month, orders by month, summing email frequency.
       scope :gr_month_or_month_su_frequency, lambda{ group('month').order('month ASC').sum('email_frequency')}
       #groups and orders by bridge bridge the total frequency
@@ -53,7 +46,7 @@ class Email < ActiveRecord::Base
 
   #scopes with cluster and year
       #total contact by month, bar chart
-      scope :total_contact_month_year_cluster , ->(month_value, year_value, cluster_value){ where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency}
+      scope :total_contact_month_year_cluster, ->(month_value, year_value, cluster_value){ where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).where("email_frequency >=?", Email::MINCONTACT).where("bridge <> '0' AND bridge <> '9' AND bridge <> '8'").gr_bridge_or_bridge_su_frequency}
 
       #Total Volume by month, bridge volume stacked chart
       scope :total_bridge_year_cluster, ->(bridge_value, year_value, cluster_value){ where("bridge = '?'", bridge_value).where("year ='?'", year_value).where("cluster_id ='?'", cluster_value).where("email_frequency >='?'", Email::MINCONTACT).group('month').order('month ASC').sum('email_frequency')}
