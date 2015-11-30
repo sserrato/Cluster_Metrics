@@ -1,8 +1,15 @@
 <div class="container">
   <h1>Domain classification</h1>
+  <ul class="nav nav-pills">
+    <li role="presentation"><%=link_to 'All domains', domains_path %></li>
+    <li role="presentation" class="active"><%=link_to 'Unclassified domains', root_path %></li>
+    <li role="presentation"><%=link_to 'Parked', domains_parked_path %></li>
+    <li role="presentation" ><%=link_to 'Global domains', domains_global_path %></li>
+
+  </ul>
   <p>
     <strong>Data composition:</strong> All records in this table need to be classified to a bridge. The <strong><%= @uniq_domains_count  %></strong> domains displayed here exclude any records with <mark> less than <%= Email::MINCONTACT %> contacts</mark> during the month period.
-    To begin classiying, click <button type="button" class="btn btn-default btn-lg">
+    To begin classifying, click <button type="button" class="btn btn-default btn-sm">
   <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <%=link_to 'here', new_domain_path %>
 </button>.
 
@@ -16,7 +23,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>Email Domain</th>
+        <th>Domain</th>
 
       </tr>
       <tbody>

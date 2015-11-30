@@ -1,14 +1,24 @@
 <p id="notice"><%= notice %></p>
-
+<div class="container">
 <h1>Listing Domains</h1>
+<ul class="nav nav-pills">
+  <li role="presentation" class="active"><%=link_to 'All', domains_path %></li>
+  <li role="presentation"><%=link_to 'Unclassified', root_path %></li>
+  <li role="presentation"><%=link_to 'Parked', domains_parked_path %></li>
+  <li role="presentation"><%=link_to 'Global', domains_global_path %></li>
+</ul>
+<p>
+  <strong>Data composition:</strong> These are the unique domains within the Cluster database that have had at least one reportable record (4 contacts) in any period.
+</button>
 
-<table>
+</p>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Url</th>
-      <th>SAT bridge</th>
-      <th>Global bridge</th>
-      <th>Cluster</th>
+      <th>Domain</th>
+      <th>Bridge</th>
+      <th></th>
+
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,9 +27,13 @@
     <% @domains.each do |domain| %>
       <tr>
         <td><%= domain.url %></td>
-        <td><%= domain.sat_bridge %></td>
-        <td><%= domain.global_bridge %></td>
-        <td><%= domain.cluster_id %></td>
+        <td><%= Email::BRIDGENAMES[domain.sat_bridge] %></td>
+
+        <td>    <%= if domain.sat_bridge == 6
+
+            end %>
+    </td>
+
         <td><%= link_to 'Show', domain %></td>
         <td><%= link_to 'Edit', edit_domain_path(domain) %></td>
         <td><%= link_to 'Destroy', domain, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -27,7 +41,5 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
-
-<%= link_to 'New Domain', new_domain_path %>

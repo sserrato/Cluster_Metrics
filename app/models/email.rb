@@ -6,10 +6,20 @@ class Email < ActiveRecord::Base
 #hash for look up and persistence model.
   @domains = Domain.all
   DOMAINS_HASH = {}
+  GLOBAL_DOMAINS_HASH = {}
+
+  @global_domains = Domain.where("sat_bridge = '6'")
+
 
   @domains.each do |d|
     DOMAINS_HASH[d.url] = d.sat_bridge #creates a domains hash
    end
+
+   @global_domains.each do |gd|
+     GLOBAL_DOMAINS_HASH[gd.url] = gd.global_bridge #creates a domains hash
+    end
+
+
   #@total_Jan_2014 =  (Email.total_contact_month_year_cluster(1,2014,3)).map
   #Email.where("month ='?'", month_value).where("year='?'", year_value).where("cluster_id ='?'", cluster_value).bridge_filter.where("email_frequency >=?", Email::MINCONTACT).gr_bridge_or_bridge_su_frequency
 #constants
@@ -76,6 +86,9 @@ class Email < ActiveRecord::Base
         CSV.foreach(file.path, headers: true) do |row|
           row.to_hash
           row[:bridge] = DOMAINS_HASH.fetch((row.to_hash[:email_domain.to_s]),0)
+          if row[:bridge] == 6
+            row[:bridge_global] = GLOBAL_DOMAINS_HASH.fetch((row.to_hash[:email_domain.to_s]),0)
+          end
           row[:cluster_id] = 3
           ##row[:email_domain] = (((row.to_hash)[:email_domain.to_s]) + "added")
           Email.create! row.to_hash

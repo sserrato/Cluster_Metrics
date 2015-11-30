@@ -1,0 +1,31 @@
+<div class="container">
+<h1>Global domains</h1>
+<ul class="nav nav-pills">
+  <li role="presentation"><%=link_to 'All', domains_path %></li>
+  <li role="presentation"><%=link_to 'Unclassified', root_path %></li>
+  <li role="presentation"><%=link_to 'Parked', domains_parked_path %></li>
+  <li role="presentation" class="active"><%=link_to 'Global', domains_global_path %></li>
+</ul>
+<p>
+  <strong>Data composition:</strong> All records here are Global bridges but need to have the global bridge classified.
+</button>
+
+</p>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Domain</th>
+      <th>Global bridge</th>
+    </tr>
+  </thead>
+  <tbody> <% @domain.each do |d| %>
+    <tr>
+      <td><%= d.url %></td>
+      <td><%= link_to 'Edit', edit_domain_path(d) %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

@@ -1,5 +1,5 @@
 class DomainsController < ApplicationController
-  #before_action :set_domain, except: [:show, :edit, :update, :destroy]
+  #before_action :set_domain, except: [:destroy, :new, :index, :parked]
 
   # GET /domains
   # GET /domains.json
@@ -28,13 +28,23 @@ class DomainsController < ApplicationController
 
   # GET /domains/1/edit
   def edit
+    @domain = Domain.find(params[:id])
   end
+
+  def global
+    @domain = Domain.where("cluster_id = '3' AND sat_bridge = '6' AND global_bridge = '0' OR global_bridge = '9998' OR global_bridge = '8'")
+  end
+
 
   # POST /domains
   # POST /domains.json
   def create
     @domain = Domain.new(domain_params)
     @emails = Email.where("email_domain = ?", @domain.url)
+    if @domain.sat_bridge = 6
+      @domain.global_bridge = 0
+      @domain.save
+    end
     respond_to do |format|
       if @domain.save
         @emails.each do |dupdate|
@@ -57,14 +67,23 @@ class DomainsController < ApplicationController
   # PATCH/PUT /domains/1
   # PATCH/PUT /domains/1.json
   def update
+    @domain = Domain.find(params[:id])
     @emails = Email.where("email_domain = ?", @domain.url)
+    if @domain.global_bridge.nil?
+      @domain.global_bridge = 0
+      @domain.save
+      @domain.update(domain_params)
+    end
     respond_to do |format|
       if @domain.update(domain_params)
         @emails.each do |dupdate|
           dupdate.bridge = @domain.sat_bridge
+          if @domain.sat_bridge == 6
+            dupdate.bridge_global = @domain.global_bridge
+          end
           dupdate.save
         end
-        format.html { redirect_to @domain, notice: 'Domain was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Domain was successfully updated.' }
         format.json { render :show, status: :ok, location: @domain }
       else
         format.html { render :edit }
@@ -85,9 +104,9 @@ class DomainsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_domain
-      @domain = Domain.find(params[:id])
-    end
+      # def set_domain
+      #   @domain = Domain.find(params[:id])
+      # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def domain_params

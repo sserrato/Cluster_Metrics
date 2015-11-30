@@ -1,25 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 <h1>Parked domains to be classified</h1>
+<ul class="nav nav-pills">
+  <li role="presentation"><%=link_to 'All domains', domains_path %></li>
+  <li role="presentation"><%=link_to 'Unclassified domains', root_path %></li>
+  <li role="presentation" class="active"><%=link_to 'Parked', domains_parked_path %></li>
+  <li role="presentation" ><%=link_to 'Global domains', domains_global_path %></li>
+</ul>
+<p>
+  <strong>Data composition:</strong> All records here have been reviewed and parked to be classified at a later time.
+</button>
 
+</p>
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Email domain</th>
+      <th>Domain</th>
 
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @parked.each do |park| %>
+  <tbody> <% @parked.each do |park| %>
       <tr>
         <td><%= link_to park.url, edit_domain_path(park) %></td>
 
-        <td><%= link_to 'Edit', edit_domain_path(park) %></td>
+        <td><%= link_to 'Edit', edit_domain_path(park) %>, <%=park.id%>, <%=park.sat_bridge %>, <%=park.global_bridge %></td>
 
       </tr>
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>

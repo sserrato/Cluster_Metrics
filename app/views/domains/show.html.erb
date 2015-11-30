@@ -1,23 +1,21 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>URL:</strong>
+  <strong>Domain:</strong>
   <%= @domain.url %>
 </p>
 
 <p>
-  <strong>Sat bridge:</strong>
-  <%= @domain.sat_bridge %>
+  <strong>Bridge:</strong>
+  <%= Email::BRIDGENAMES[@domain.sat_bridge] %>
 </p>
 
-<p>
-  <strong>Clusters:</strong>
-  <%= @domain.cluster_id %>
-</p>
 
 <p>
   <strong>Global bridge:</strong>
-  <%= @domain.global_bridge %>
+  <%= if @domain.sat_bridge == 6
+    Email::BRIDGENAMES[@domain.global_bridge] || N/A
+  end %>
 </p>
 
 <%= link_to 'Edit', edit_domain_path(@domain) %> |

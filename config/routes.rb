@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'emails#classify'
-  resources :domains, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :domains, only: [:index, :new, :create, :edit, :update, :destroy, :parked]
   resources :goals
   resources :users, only: [:index, :new, :create, :edit, :update, :show]
   resources :sessions, :only => [:new, :create, :destroy]
@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :clusters
   post 'emails/import'
   get 'domains/parked'
+  get 'domains/global'
+  get 'domains/:id' => 'domains#show'
   get 'emails/upload'
   get 'emails/classify'
   post 'emails/edit'
