@@ -284,30 +284,30 @@ end # end def volume2014
     @b5_m9_y2015_c3 = (Email.average_intensity_year_cluster(5,9,2015,3))
     @b6_m9_y2015_c3 = (Email.average_intensity_year_cluster(6,9,2015,3))
     @b7_m9_y2015_c3 = (Email.average_intensity_year_cluster(7,9,2015,3))
-    #2015- October
-    @b1_m10_y2015_c3 = (Email.average_intensity_year_cluster(1,10,2015,3))
-    @b2_m10_y2015_c3 = (Email.average_intensity_year_cluster(2,10,2015,3))
-    @b3_m10_y2015_c3 = (Email.average_intensity_year_cluster(3,10,2015,3))
-    @b4_m10_y2015_c3 = (Email.average_intensity_year_cluster(4,10,2015,3))
-    @b5_m10_y2015_c3 = (Email.average_intensity_year_cluster(5,10,2015,3))
-    @b6_m10_y2015_c3 = (Email.average_intensity_year_cluster(6,10,2015,3))
-    @b7_m10_y2015_c3 = (Email.average_intensity_year_cluster(7,10,2015,3))
-    #2015- November
-    @b1_m11_y2015_c3 = (Email.average_intensity_year_cluster(1,11,2015,3))
-    @b2_m11_y2015_c3 = (Email.average_intensity_year_cluster(2,11,2015,3))
-    @b3_m11_y2015_c3 = (Email.average_intensity_year_cluster(3,11,2015,3))
-    @b4_m11_y2015_c3 = (Email.average_intensity_year_cluster(4,11,2015,3))
-    @b5_m11_y2015_c3 = (Email.average_intensity_year_cluster(5,11,2015,3))
-    @b6_m11_y2015_c3 = (Email.average_intensity_year_cluster(6,11,2015,3))
-    @b7_m11_y2015_c3 = (Email.average_intensity_year_cluster(7,11,2015,3))
-    #2015- December
-    @b1_m12_y2015_c3 = (Email.average_intensity_year_cluster(1,12,2015,3))
-    @b2_m12_y2015_c3 = (Email.average_intensity_year_cluster(2,12,2015,3))
-    @b3_m12_y2015_c3 = (Email.average_intensity_year_cluster(3,12,2015,3))
-    @b4_m12_y2015_c3 = (Email.average_intensity_year_cluster(4,12,2015,3))
-    @b5_m12_y2015_c3 = (Email.average_intensity_year_cluster(5,12,2015,3))
-    @b6_m12_y2015_c3 = (Email.average_intensity_year_cluster(6,12,2015,3))
-    @b7_m12_y2015_c3 = (Email.average_intensity_year_cluster(7,12,2015,3))
+    # #2015- October
+    # @b1_m10_y2015_c3 = (Email.average_intensity_year_cluster(1,10,2015,3))
+    # @b2_m10_y2015_c3 = (Email.average_intensity_year_cluster(2,10,2015,3))
+    # @b3_m10_y2015_c3 = (Email.average_intensity_year_cluster(3,10,2015,3))
+    # @b4_m10_y2015_c3 = (Email.average_intensity_year_cluster(4,10,2015,3))
+    # @b5_m10_y2015_c3 = (Email.average_intensity_year_cluster(5,10,2015,3))
+    # @b6_m10_y2015_c3 = (Email.average_intensity_year_cluster(6,10,2015,3))
+    # @b7_m10_y2015_c3 = (Email.average_intensity_year_cluster(7,10,2015,3))
+    # #2015- November
+    # @b1_m11_y2015_c3 = (Email.average_intensity_year_cluster(1,11,2015,3))
+    # @b2_m11_y2015_c3 = (Email.average_intensity_year_cluster(2,11,2015,3))
+    # @b3_m11_y2015_c3 = (Email.average_intensity_year_cluster(3,11,2015,3))
+    # @b4_m11_y2015_c3 = (Email.average_intensity_year_cluster(4,11,2015,3))
+    # @b5_m11_y2015_c3 = (Email.average_intensity_year_cluster(5,11,2015,3))
+    # @b6_m11_y2015_c3 = (Email.average_intensity_year_cluster(6,11,2015,3))
+    # @b7_m11_y2015_c3 = (Email.average_intensity_year_cluster(7,11,2015,3))
+    # #2015- December
+    # @b1_m12_y2015_c3 = (Email.average_intensity_year_cluster(1,12,2015,3))
+    # @b2_m12_y2015_c3 = (Email.average_intensity_year_cluster(2,12,2015,3))
+    # @b3_m12_y2015_c3 = (Email.average_intensity_year_cluster(3,12,2015,3))
+    # @b4_m12_y2015_c3 = (Email.average_intensity_year_cluster(4,12,2015,3))
+    # @b5_m12_y2015_c3 = (Email.average_intensity_year_cluster(5,12,2015,3))
+    # @b6_m12_y2015_c3 = (Email.average_intensity_year_cluster(6,12,2015,3))
+    # @b7_m12_y2015_c3 = (Email.average_intensity_year_cluster(7,12,2015,3))
 
     #chart for intensity
     @average_intensity_chart2015 = LazyHighCharts::HighChart.new('graph') do |f|
@@ -322,9 +322,9 @@ end # end def volume2014
     f.series(:name => "July", :yAxis => 1, :data => [@b1_m7_y2015_c3, @b2_m7_y2015_c3, @b3_m7_y2015_c3, @b4_m7_y2015_c3, @b5_m7_y2015_c3, @b6_m7_y2015_c3, @b7_m7_y2015_c3])
     f.series(:name => "August", :yAxis => 1, :data => [@b1_m8_y2015_c3, @b2_m8_y2015_c3, @b3_m8_y2015_c3, @b4_m8_y2015_c3, @b5_m8_y2015_c3, @b6_m8_y2015_c3, @b7_m8_y2015_c3])
     f.series(:name => "September", :yAxis => 1, :data => [@b1_m9_y2015_c3, @b2_m9_y2015_c3, @b3_m9_y2015_c3, @b4_m9_y2015_c3, @b5_m9_y2015_c3, @b6_m9_y2015_c3, @b7_m9_y2015_c3])
-    f.series(:name => "October", :yAxis => 1, :data => [@b1_m10_y2015_c3, @b2_m10_y2015_c3, @b3_m10_y2015_c3, @b4_m10_y2015_c3, @b5_m10_y2015_c3, @b6_m10_y2015_c3, @b7_m10_y2015_c3])
-    f.series(:name => "November", :yAxis => 1, :data => [@b1_m11_y2015_c3, @b2_m11_y2015_c3, @b3_m11_y2015_c3, @b4_m11_y2015_c3, @b5_m11_y2015_c3, @b6_m11_y2015_c3, @b7_m11_y2015_c3])
-    f.series(:name => "December", :yAxis => 1, :data => [@b1_m12_y2015_c3, @b2_m12_y2015_c3, @b3_m12_y2015_c3, @b4_m12_y2015_c3, @b5_m12_y2015_c3, @b6_m12_y2015_c3, @b7_m12_y2015_c3])
+    # f.series(:name => "October", :yAxis => 1, :data => [@b1_m10_y2015_c3, @b2_m10_y2015_c3, @b3_m10_y2015_c3, @b4_m10_y2015_c3, @b5_m10_y2015_c3, @b6_m10_y2015_c3, @b7_m10_y2015_c3])
+    # f.series(:name => "November", :yAxis => 1, :data => [@b1_m11_y2015_c3, @b2_m11_y2015_c3, @b3_m11_y2015_c3, @b4_m11_y2015_c3, @b5_m11_y2015_c3, @b6_m11_y2015_c3, @b7_m11_y2015_c3])
+    # f.series(:name => "December", :yAxis => 1, :data => [@b1_m12_y2015_c3, @b2_m12_y2015_c3, @b3_m12_y2015_c3, @b4_m12_y2015_c3, @b5_m12_y2015_c3, @b6_m12_y2015_c3, @b7_m12_y2015_c3])
 
     f.yAxis [
       {:title => {:text => "", :margin => 0} },
@@ -468,6 +468,139 @@ end #end def intensity 2015
     end #end of intensity achieved cahrt
 
   end #end def intensity_achieved
+
+  def intensity_achieved2015
+
+    # year = 2015
+    #2015 - Jan
+    @b1_m1_y14_c3 = (Email.average_intensity_year_cluster(1,1,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    @b2_m1_y14_c3 = (Email.average_intensity_year_cluster(2,1,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    @b3_m1_y14_c3 = (Email.average_intensity_year_cluster(3,1,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    @b4_m1_y14_c3 = (Email.average_intensity_year_cluster(4,1,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    @b5_m1_y14_c3 = (Email.average_intensity_year_cluster(5,1,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    @b6_m1_y14_c3 = (Email.average_intensity_year_cluster(6,1,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    @b7_m1_y14_c3 = (Email.average_intensity_year_cluster(7,1,2015,3)).to_f/Goal.intensity_goals(3)[6]
+    #2015 - Feb
+    @b1_m2_y14_c3 = (Email.average_intensity_year_cluster(1,2,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    @b2_m2_y14_c3 = (Email.average_intensity_year_cluster(2,2,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    @b3_m2_y14_c3 = (Email.average_intensity_year_cluster(3,2,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    @b4_m2_y14_c3 = (Email.average_intensity_year_cluster(4,2,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    @b5_m2_y14_c3 = (Email.average_intensity_year_cluster(5,2,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    @b6_m2_y14_c3 = (Email.average_intensity_year_cluster(6,2,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    @b7_m2_y14_c3 = (Email.average_intensity_year_cluster(7,2,2015,3)).to_f/Goal.intensity_goals(3)[6]
+    #2015 - March
+    @b1_m3_y14_c3 = (Email.average_intensity_year_cluster(1,3,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    @b2_m3_y14_c3 = (Email.average_intensity_year_cluster(2,3,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    @b3_m3_y14_c3 = (Email.average_intensity_year_cluster(3,3,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    @b4_m3_y14_c3 = (Email.average_intensity_year_cluster(4,3,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    @b5_m3_y14_c3 = (Email.average_intensity_year_cluster(5,3,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    @b6_m3_y14_c3 = (Email.average_intensity_year_cluster(6,3,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    @b7_m3_y14_c3 = (Email.average_intensity_year_cluster(7,3,2015,3)).to_f/Goal.intensity_goals(3)[6]
+    #2015- April
+    @b1_m4_y14_c3 = (Email.average_intensity_year_cluster(1,4,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    @b2_m4_y14_c3 = (Email.average_intensity_year_cluster(2,4,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    @b3_m4_y14_c3 = (Email.average_intensity_year_cluster(3,4,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    @b4_m4_y14_c3 = (Email.average_intensity_year_cluster(4,4,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    @b5_m4_y14_c3 = (Email.average_intensity_year_cluster(5,4,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    @b6_m4_y14_c3 = (Email.average_intensity_year_cluster(6,4,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    @b7_m4_y14_c3 = (Email.average_intensity_year_cluster(7,4,2015,3)).to_f/Goal.intensity_goals(3)[6]
+    #2015- May
+    @b1_m5_y14_c3 = (Email.average_intensity_year_cluster(1,5,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    @b2_m5_y14_c3 = (Email.average_intensity_year_cluster(2,5,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    @b3_m5_y14_c3 = (Email.average_intensity_year_cluster(3,5,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    @b4_m5_y14_c3 = (Email.average_intensity_year_cluster(4,5,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    @b5_m5_y14_c3 = (Email.average_intensity_year_cluster(5,5,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    @b6_m5_y14_c3 = (Email.average_intensity_year_cluster(6,5,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    @b7_m5_y14_c3 = (Email.average_intensity_year_cluster(7,5,2015,3)).to_f/Goal.intensity_goals(3)[6]
+    #2015- June
+    @b1_m6_y14_c3 = (Email.average_intensity_year_cluster(1,6,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    @b2_m6_y14_c3 = (Email.average_intensity_year_cluster(2,6,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    @b3_m6_y14_c3 = (Email.average_intensity_year_cluster(3,6,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    @b4_m6_y14_c3 = (Email.average_intensity_year_cluster(4,6,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    @b5_m6_y14_c3 = (Email.average_intensity_year_cluster(5,6,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    @b6_m6_y14_c3 = (Email.average_intensity_year_cluster(6,6,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    @b7_m6_y14_c3 = (Email.average_intensity_year_cluster(7,6,2015,3)).to_f/Goal.intensity_goals(3)[6]
+    #2015- July
+    @b1_m7_y14_c3 = (Email.average_intensity_year_cluster(1,7,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    @b2_m7_y14_c3 = (Email.average_intensity_year_cluster(2,7,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    @b3_m7_y14_c3 = (Email.average_intensity_year_cluster(3,7,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    @b4_m7_y14_c3 = (Email.average_intensity_year_cluster(4,7,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    @b5_m7_y14_c3 = (Email.average_intensity_year_cluster(5,7,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    @b6_m7_y14_c3 = (Email.average_intensity_year_cluster(6,7,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    @b7_m7_y14_c3 = (Email.average_intensity_year_cluster(7,7,2015,3)).to_f/Goal.intensity_goals(3)[6]
+    #2015- August
+    @b1_m8_y14_c3 = (Email.average_intensity_year_cluster(1,8,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    @b2_m8_y14_c3 = (Email.average_intensity_year_cluster(2,8,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    @b3_m8_y14_c3 = (Email.average_intensity_year_cluster(3,8,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    @b4_m8_y14_c3 = (Email.average_intensity_year_cluster(4,8,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    @b5_m8_y14_c3 = (Email.average_intensity_year_cluster(5,8,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    @b6_m8_y14_c3 = (Email.average_intensity_year_cluster(6,8,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    @b7_m8_y14_c3 = (Email.average_intensity_year_cluster(7,8,2015,3)).to_f/Goal.intensity_goals(3)[6]
+    #2015- September
+    @b1_m9_y14_c3 = (Email.average_intensity_year_cluster(1,9,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    @b2_m9_y14_c3 = (Email.average_intensity_year_cluster(2,9,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    @b3_m9_y14_c3 = (Email.average_intensity_year_cluster(3,9,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    @b4_m9_y14_c3 = (Email.average_intensity_year_cluster(4,9,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    @b5_m9_y14_c3 = (Email.average_intensity_year_cluster(5,9,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    @b6_m9_y14_c3 = (Email.average_intensity_year_cluster(6,9,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    @b7_m9_y14_c3 = (Email.average_intensity_year_cluster(7,9,2015,3)).to_f/Goal.intensity_goals(3)[6]
+    # #2015- October
+    # @b1_m10_y14_c3 = (Email.average_intensity_year_cluster(1,10,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    # @b2_m10_y14_c3 = (Email.average_intensity_year_cluster(2,10,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    # @b3_m10_y14_c3 = (Email.average_intensity_year_cluster(3,10,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    # @b4_m10_y14_c3 = (Email.average_intensity_year_cluster(4,10,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    # @b5_m10_y14_c3 = (Email.average_intensity_year_cluster(5,10,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    # @b6_m10_y14_c3 = (Email.average_intensity_year_cluster(6,10,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    # @b7_m10_y14_c3 = (Email.average_intensity_year_cluster(7,10,2015,3)).to_f/Goal.intensity_goals(3)[6]
+    # #2015- November
+    # @b1_m11_y14_c3 = (Email.average_intensity_year_cluster(1,11,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    # @b2_m11_y14_c3 = (Email.average_intensity_year_cluster(2,11,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    # @b3_m11_y14_c3 = (Email.average_intensity_year_cluster(3,11,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    # @b4_m11_y14_c3 = (Email.average_intensity_year_cluster(4,11,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    # @b5_m11_y14_c3 = (Email.average_intensity_year_cluster(5,11,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    # @b6_m11_y14_c3 = (Email.average_intensity_year_cluster(6,11,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    # @b7_m11_y14_c3 = (Email.average_intensity_year_cluster(7,11,2015,3)).to_f/Goal.intensity_goals(3)[6]
+    # #2015- December
+    # @b1_m12_y14_c3 = (Email.average_intensity_year_cluster(1,12,2015,3)).to_f/Goal.intensity_goals(3)[0]
+    # @b2_m12_y14_c3 = (Email.average_intensity_year_cluster(2,12,2015,3)).to_f/Goal.intensity_goals(3)[1]
+    # @b3_m12_y14_c3 = (Email.average_intensity_year_cluster(3,12,2015,3)).to_f/Goal.intensity_goals(3)[2]
+    # @b4_m12_y14_c3 = (Email.average_intensity_year_cluster(4,12,2015,3)).to_f/Goal.intensity_goals(3)[3]
+    # @b5_m12_y14_c3 = (Email.average_intensity_year_cluster(5,12,2015,3)).to_f/Goal.intensity_goals(3)[4]
+    # @b6_m12_y14_c3 = (Email.average_intensity_year_cluster(6,12,2015,3)).to_f/Goal.intensity_goals(3)[5]
+    # @b7_m12_y14_c3 = (Email.average_intensity_year_cluster(7,12,2015,3)).to_f/Goal.intensity_goals(3)[6]
+
+
+    #diversity metrics
+    @intensity_goals = Goal.intensity_goals(3)
+
+    @intensity_achieved_chart2015 = LazyHighCharts::HighChart.new('graph') do |f|
+    f.title(:text => "Average intensity of communication per bridge")
+    f.xAxis(:categories =>  ["Capital", "Company", "Research", "Public Sector", "Cluster", "Global Market", "Education"])
+    f.series(:name => "January", :yAxis => 1, :data => [@b1_m1_y14_c3, @b2_m1_y14_c3, @b3_m1_y14_c3, @b4_m1_y14_c3, @b5_m1_y14_c3, @b6_m1_y14_c3, @b7_m1_y14_c3])
+    f.series(:name => "February", :yAxis => 1, :data => [@b1_m2_y14_c3, @b2_m2_y14_c3, @b3_m2_y14_c3, @b4_m2_y14_c3, @b5_m2_y14_c3, @b6_m2_y14_c3, @b7_m2_y14_c3])
+    f.series(:name => "March", :yAxis => 1, :data => [@b1_m3_y14_c3, @b2_m3_y14_c3, @b3_m3_y14_c3, @b4_m3_y14_c3, @b5_m3_y14_c3, @b6_m3_y14_c3, @b7_m3_y14_c3])
+    f.series(:name => "April", :yAxis => 1, :data =>[@b1_m4_y14_c3, @b2_m4_y14_c3, @b3_m4_y14_c3, @b4_m4_y14_c3, @b5_m4_y14_c3, @b6_m4_y14_c3, @b7_m4_y14_c3])
+    f.series(:name => "May", :yAxis => 1, :data => [@b1_m5_y14_c3, @b2_m5_y14_c3, @b3_m5_y14_c3, @b4_m5_y14_c3, @b5_m5_y14_c3, @b6_m5_y14_c3, @b7_m5_y14_c3])
+    f.series(:name => "June", :yAxis => 1, :data => [@b1_m6_y14_c3, @b2_m6_y14_c3, @b3_m6_y14_c3, @b4_m6_y14_c3, @b5_m6_y14_c3, @b6_m6_y14_c3, @b7_m6_y14_c3])
+    f.series(:name => "July", :yAxis => 1, :data => [@b1_m7_y14_c3, @b2_m7_y14_c3, @b3_m7_y14_c3, @b4_m7_y14_c3, @b5_m7_y14_c3, @b6_m7_y14_c3, @b7_m7_y14_c3])
+    f.series(:name => "August", :yAxis => 1, :data => [@b1_m8_y14_c3, @b2_m8_y14_c3, @b3_m8_y14_c3, @b4_m8_y14_c3, @b5_m8_y14_c3, @b6_m8_y14_c3, @b7_m8_y14_c3])
+    f.series(:name => "September", :yAxis => 1, :data => [@b1_m9_y14_c3, @b2_m9_y14_c3, @b3_m9_y14_c3, @b4_m9_y14_c3, @b5_m9_y14_c3, @b6_m9_y14_c3, @b7_m9_y14_c3])
+    # f.series(:name => "October", :yAxis => 1, :data => [@b1_m10_y14_c3, @b2_m10_y14_c3, @b3_m10_y14_c3, @b4_m10_y14_c3, @b5_m10_y14_c3, @b6_m10_y14_c3, @b7_m10_y14_c3])
+    # f.series(:name => "November", :yAxis => 1, :data => [@b1_m11_y14_c3, @b2_m11_y14_c3, @b3_m11_y14_c3, @b4_m11_y14_c3, @b5_m11_y14_c3, @b6_m11_y14_c3, @b7_m11_y14_c3])
+    # f.series(:name => "December", :yAxis => 1, :data => [@b1_m12_y14_c3, @b2_m12_y14_c3, @b3_m12_y14_c3, @b4_m12_y14_c3, @b5_m12_y14_c3, @b6_m12_y14_c3, @b7_m12_y14_c3])
+
+    f.yAxis [
+      {:title => {:text => "", :margin => 0} },
+      {:title => {:text => "Average Contact per Bridge"}, :opposite => true},
+    ]
+    #f.options[:tooltip][:formatter] = "function(){ return '<b>'+ this.point.name +'</b>: '+ Highcharts.numberFormat(this.percentage, 2) +' %'; }"
+
+    f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
+    f.chart({:defaultSeriesType=>"column"})
+  end #end of intensity achieved chart
+
+  end #end def intensity_achieved2015
+
 
   def intensity2013
   #   # year=  2013
@@ -886,9 +1019,9 @@ end #end def intensity 2013
       @jul_distinct_2015 = Email.diversity_metric(7,2015,3).values
       @aug_distinct_2015 = Email.diversity_metric(8,2015,3).values
       @sep_distinct_2015 = Email.diversity_metric(9,2015,3).values
-      @oct_distinct_2015 = Email.diversity_metric(10,2015,3).values
-      @nov_distinct_2015 = Email.diversity_metric(11,2015,3).values
-      @dec_distinct_2015 = Email.diversity_metric(12,2015,3).values
+      #@oct_distinct_2015 = Email.diversity_metric(10,2015,3).values
+      #@nov_distinct_2015 = Email.diversity_metric(11,2015,3).values
+      #@dec_distinct_2015 = Email.diversity_metric(12,2015,3).values
 
       #diversity metrics
       @diversity_goals = Goal.diversity_goals(3)
@@ -930,17 +1063,17 @@ end #end def intensity 2013
             @sep_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
       end
 
-      @oct_distinct_2015.each_with_index do |d, i|
-            @oct_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
-      end
-
-      @nov_distinct_2015.each_with_index do |d, i|
-            @nov_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
-      end
-
-      @dec_distinct_2015.each_with_index do |d, i|
-            @dec_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
-      end
+      # @oct_distinct_2015.each_with_index do |d, i|
+      #       @oct_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      # end
+      #
+      # @nov_distinct_2015.each_with_index do |d, i|
+      #       @nov_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      # end
+      #
+      # @dec_distinct_2015.each_with_index do |d, i|
+      #       @dec_diversity_2015.push(((d.to_f / (@diversity_goals[i]).to_f)).round(3))
+      # end
 
       @diversity_2015 = LazyHighCharts::HighChart.new('graph') do |f|
         f.title(:text => "Contact Gap - Actual vs Goal Unique Contacts")
@@ -954,9 +1087,9 @@ end #end def intensity 2013
         f.series(:name => "July", :yAxis => 1, :data => @jul_diversity_2015)
         f.series(:name => "August", :yAxis => 1, :data => @aug_diversity_2015)
         f.series(:name => "September", :yAxis => 1, :data => @sep_diversity_2015)
-        f.series(:name => "October", :yAxis => 1, :data => @oct_diversity_2015)
-        f.series(:name => "November", :yAxis => 1, :data => @nov_diversity_2015)
-        f.series(:name => "December", :yAxis => 1, :data => @dec_diversity_2015)
+        # f.series(:name => "October", :yAxis => 1, :data => @oct_diversity_2015)
+        # f.series(:name => "November", :yAxis => 1, :data => @nov_diversity_2015)
+        # f.series(:name => "December", :yAxis => 1, :data => @dec_diversity_2015)
 
         f.yAxis [
           {:title => {:text => "", :margin => 0} },
