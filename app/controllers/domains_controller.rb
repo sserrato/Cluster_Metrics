@@ -51,7 +51,7 @@ class DomainsController < ApplicationController
           dupdate.bridge = @domain.sat_bridge
           dupdate.save
         end
-        format.html { redirect_to new_domain_path, notice: 'Domain was successfully created.' }
+        format.html { redirect_to new_domain_path, notice: 'Domain was successfully classified to a bridge.' }
         format.json { render :show, status: :created, location: @domain }
       else
         format.html { render :new }
