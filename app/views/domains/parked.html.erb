@@ -11,6 +11,10 @@
 </button>
 
 </p>
+<p>Download:
+  <%= link_to 'CSV', domains_parked_path(format "csv") %> |
+  <%= link_to 'Excel', domains_parked_path(format "xls") %>
+</p>
 <table class="table table-striped">
   <thead>
     <tr>

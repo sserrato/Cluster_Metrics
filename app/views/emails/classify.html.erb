@@ -9,9 +9,7 @@
   </ul>
   <p>
     <strong>Data composition:</strong> All records in this table need to be classified to a bridge. The <strong><%= @uniq_domains_count  %></strong> domains displayed here exclude any records with <mark> less than <%= Email::MINCONTACT %> contacts</mark> during the month period.
-    To begin classifying, click <button type="button" class="btn btn-default btn-sm">
-  <span class="glyphicon glyphicon-star" aria-hidden="true"></span> <%=link_to 'here', new_domain_path %>
-</button>.
+    To begin classifying, click <%= link_to 'here', new_domain_path, {:class => "btn btn-default btn-sm glyphicon glyphicon-star"} %>.
 
   </p>
   <p>Download:

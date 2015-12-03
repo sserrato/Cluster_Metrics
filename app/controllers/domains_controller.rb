@@ -5,6 +5,13 @@ class DomainsController < ApplicationController
   # GET /domains.json
   def index
     @domains = Domain.all
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @domains.to_csv}
+      format.xls {send_data @domains.to_csv(col_sep: "\t")}
+      format.json {send_data @domains.to_json}
+    end
   end
 
   # GET /domains/1
@@ -19,7 +26,7 @@ class DomainsController < ApplicationController
     @email_name = Email.where("bridge = '0'")
       #logic to ensure that when all email_domains are classified, user is told that all is done.
       if @email_name == nil
-        format.html { redirect_to ("/"), notice: 'All emails have been classied.' }
+        format.html { redirect_to ("/"), notice: 'All emails have been classified.' }
         format.json { render :show, status: :ok, location: ('/') }
       else
         @email_domain =   @email_name[0].email_domain
@@ -33,6 +40,14 @@ class DomainsController < ApplicationController
 
   def global
     @domain = Domain.where("cluster_id = '3' AND sat_bridge = '6' AND global_bridge = '0' OR global_bridge = '9998' OR global_bridge = '8'")
+
+        respond_to do |format|
+          format.html
+          format.csv {send_data @domain.to_csv}
+          format.xls {send_data @domain.to_csv(col_sep: "\t")}
+          format.json {send_data @domain.to_json}
+        end
+
   end
 
 
@@ -41,7 +56,7 @@ class DomainsController < ApplicationController
   def create
     @domain = Domain.new(domain_params)
     @emails = Email.where("email_domain = ?", @domain.url)
-    if @domain.sat_bridge = 6
+    if @domain.sat_bridge == 6
       @domain.global_bridge = 0
       @domain.save
     end
@@ -62,6 +77,13 @@ class DomainsController < ApplicationController
 
   def parked
     @parked = Domain.where("sat_bridge = '9'")
+
+    respond_to do |format|
+      format.html
+      format.csv {send_data @parked.to_csv}
+      format.xls {send_data @parked.to_csv(col_sep: "\t")}
+      format.json {send_data @parked.to_json}
+    end
   end #parked
 
   # PATCH/PUT /domains/1
